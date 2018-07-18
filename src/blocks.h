@@ -15,7 +15,11 @@ public:
 	QRectF boundingRect() const;
 	void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 	void setColor(const QColor &color);
+
+	//在类外因为不能访问private，故用一个公有的move()函数来调用moveBy()，实现在类外部移动
 	void move();
+	//设置位移的值
+	void setMove(qreal x, qreal y);
 
 private:
 	QPixmap m_pix_one;

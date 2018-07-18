@@ -16,8 +16,9 @@ public:
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     void setColor(const QColor &color);
+	//在类外因为不能访问private，故用一个公有的move()函数来调用moveBy()，实现在类外部移动
 	void move();
-
+	//设置位移的值
 	void setMove(qreal x, qreal y);
 
 protected:
@@ -29,5 +30,9 @@ private:
 	qreal move_y;
     bool mPressFlag_Space;
     int m_count;
+	//金币
+	int coins;
+	//生命
+	int life;
 };
 #endif // GRAPHICSITEM_H

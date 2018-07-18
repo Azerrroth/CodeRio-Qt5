@@ -14,9 +14,15 @@ class background : public QGraphicsObject
 {
 public:
 	background(const QString pix);
+	//在类外因为不能访问private，故用一个公有的move()函数来调用moveBy()，实现在类外部移动
 	void move();
+	//设置位移的值
+	void setMove(qreal x, qreal y);
+	//在返回矩形时，返回一个大小为0的矩形，这样的话可以实现无论何时都不会视为碰撞
+	//如果不能通过设置大小为0来避免碰撞的话，应该通过判断类型名称来避免
 	QRectF boundingRect() const;
 	void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+
 private:
 	qreal move_x;
 	qreal move_y;

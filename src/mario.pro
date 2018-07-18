@@ -29,14 +29,16 @@ SOURCES += \
     gameboard.cpp \
     mario.cpp \
     background.cpp \
-    view.cpp
+    view.cpp \
+    coins.cpp
 
 HEADERS += \
     blocks.h \
     gameboard.h \
     mario.h \
     background.h \
-    view.h
+    view.h \
+    coins.h
 
 FORMS += \
         mainwindow.ui
