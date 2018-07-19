@@ -1,0 +1,10 @@
+BLO：blocks类，即障碍物
+COI：coins类，即为金币
+MON：monsters类，即为怪物
+FLA：flag类，即为旗子
+MUS：mushrooms类，即为蘑菇
+TUR：turtles类，即为乌龟
+例如"BLO00001230000256"
+---BLO：是一个金币
+---0000123：x坐标为123
+---0000256：y坐标为256

@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2018-07-16T20:07:42
+# Project created by QtCreator 2018-07-15T18:05:42
 #
 #-------------------------------------------------
 
@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = src
+TARGET = mario
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -25,10 +25,20 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+    blocks.cpp \
+    gameboard.cpp \
+    mario.cpp \
+    background.cpp \
+    view.cpp \
+    coins.cpp
 
 HEADERS += \
-        mainwindow.h
+    blocks.h \
+    gameboard.h \
+    mario.h \
+    background.h \
+    view.h \
+    coins.h
 
 FORMS += \
         mainwindow.ui

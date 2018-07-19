@@ -1,0 +1,22 @@
+#ifndef GRAPHICSITEM_H
+#define GRAPHICSITEM_H
+#include <QGraphicsObject>
+#include <QPixmap>
+
+class mario:public QGraphicsObject
+{
+public:
+    mario(const QString pix);
+    QRectF boundingRect() const;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    void setColor(const QColor &color);
+
+protected:
+
+
+private:
+    QPixmap m_pix_one;
+    bool mPressFlag_Space;
+    int m_count;
+};
+#endif // GRAPHICSITEM_H
