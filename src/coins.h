@@ -1,7 +1,7 @@
 #ifndef COINS_H
 #define COINS_H
 #include <QGraphicsObject>
-
+#include <QPixmap>
 
 class coins : public QGraphicsObject
 {

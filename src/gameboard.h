@@ -15,21 +15,24 @@
 #include <QTimer>
 #include <QObject>
 #include <QString>
+#include <QList>
+#include <string>
+using std::string;
 
 //枚举类型，标志着碰撞体的类型
 enum colliderType
 {
-	blocks,
-	coins,
-	mushrooms,
+	block,
+	coin,
+	mushroom,
 	flag,
-	monsters,
+	monster,
 	turtles
 };
 
 
 class mario;
-class blocs;
+class blocks;
 class background;
 
 class GameBoard : public QObject
@@ -38,16 +41,13 @@ class GameBoard : public QObject
 public:
 	explicit GameBoard(QObject *parent = nullptr);
 
-	//该函数应该在主函数中调用，通过读取一个txt文件从而把所有的blocks和其他的内容初始化
-	//并且同时把这些内容的位置确定
-	//完成setPos操作
-	void setBlock(const QString file, qreal pos_x, qreal pos_y);
+
 
 	void moveView();	//该函数移动除了马里奥之外的内容，包括背景及障碍物
 	void moveMario();	//该函数移动马里奥
 
 	mario* getMario() {return player;}
-	QVector<blocks*> getBlocks() {return blocklist;}
+	QList<blocks*> getBlocks() {return blocklist;}
 	background* getBack() {return back;}
 
 	bool isLeftcollider();				//判断马里奥左边的碰撞物是否影响了马里奥前进
@@ -59,10 +59,11 @@ public:
 
 private:
 
+
 	mario* player;
 
 	//有一系列的障碍方块，故要用vector
-	QVector<blocks*> blocklist;
+	QList<blocks*> blocklist;
 	background* back;
 
 	//计时器，在构造函数中创建QTimer时把相应的值赋给它
@@ -71,6 +72,10 @@ private:
 	//把那些移动的操作都放在timeEvent实现
 	//并且在该函数内部同时实现如果没有碰撞体就下落的功能
 	void timerEvent(QTimerEvent* event);
+	//该函数应该在构造函数中调用，通过读取一个txt文件从而把所有的blocks和其他的内容初始化
+	//并且同时把这些内容的位置确定
+	//完成setPos操作
+	void setItems(string file);
 };
 
 #endif // GAMEBOARD_H

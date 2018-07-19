@@ -9,7 +9,7 @@
 #include <QGraphicsObject>
 #include <QPixmap>
 
-class mario:public QGraphicsObject
+class mario: public QGraphicsObject
 {
 public:
 	mario(const QString pix);
@@ -47,8 +47,6 @@ private:
     QPixmap m_pix_one;
 	qreal move_x;
 	qreal move_y;
-    bool mPressFlag_Space;
-    int m_count;
 
     int coins;      //金币
     int life;       //生命

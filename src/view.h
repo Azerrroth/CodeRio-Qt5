@@ -17,6 +17,7 @@ class view : public QWidget
 	Q_OBJECT
 public:
 	explicit view(QWidget *parent = nullptr);
+	GameBoard* getControl() { return control; }
 
 private:
 	GameBoard* control;

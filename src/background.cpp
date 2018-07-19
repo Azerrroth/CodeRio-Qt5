@@ -1,8 +1,16 @@
 #include "background.h"
-
+#include <QGraphicsScene>
+#include <QKeyEvent>
+#include <QGraphicsView>
+#include <QPixmap>
+#include <iostream>
+#include <QCoreApplication>
+#include <QTime>
+#include <QDebug>
 background::background(const QString pix)
 {
-	m_pix_one.load(pix_one);
+	m_pix_one.load(pix);
+	qDebug() << "background was created" << endl;
 }
 
 

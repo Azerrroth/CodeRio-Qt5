@@ -9,6 +9,7 @@
 #ifndef BACKGROUND_H
 #define BACKGROUND_H
 #include <QGraphicsObject>
+#include <QPixmap>
 
 class background : public QGraphicsObject
 {
@@ -24,6 +25,7 @@ public:
 	void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
 private:
+	QPixmap m_pix_one;
 	qreal move_x;
 	qreal move_y;
 };

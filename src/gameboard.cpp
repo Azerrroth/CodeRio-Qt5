@@ -13,12 +13,16 @@ using std::string;
 
 GameBoard::GameBoard(QObject *parent) : QObject(parent)
 {
-	timerId = startTimer(15);	//开启一个每隔15ms触发一次的计时器，timerId是该计时器的名称，
+	qDebug() << "GameBoard was created" << endl;
+	timerId = startTimer(15);	//开启一个每隔15ms触发一次的计时器，timerId是该计时器的名称
+	player = new mario(":/picture/mario.png");
+	back = new background(":/picture/background");
+	setItems(":/info.txt");
 }
 
-void GameBoard::setItems(const QString file)
+void GameBoard::setItems(string file)
 {
-	fstream in(":informations.txt");
+	fstream in(file);
 	string str;
 	while(getline(in, str))
 	{
@@ -34,9 +38,9 @@ void GameBoard::setItems(const QString file)
 		
 		else if(str.substr(0, 3) == "COI") 
 		{
-			coins* coin = new coins(":picture.coin.png");
-			coin->setPos(x, y);
-			coinlist.push_back(coin);
+//			coins* coin = new coins(":picture.coin.png");
+//			coin->setPos(x, y);
+//			coinlist.push_back(coin);
 		}
 		else if(str.substr(0, 3) == "MON")
 		{
@@ -60,7 +64,7 @@ void GameBoard::setItems(const QString file)
 
 void GameBoard::timerEvent(QTimerEvent *event)
 {
-	moveView();
+//	moveView();
 	moveMario();
 }
 
@@ -78,7 +82,7 @@ void GameBoard::moveMario()
 {
 
     if(player->getGoingLeft()
-            && !player->getJumping()            //玩家不是跳的时候才行
+			&& !player->getJumping()            //玩家不是跳的时候才行
             && !isRightcollider())              //左侧没有物体才能走
     {
         player->moveBy(-2,0);
@@ -197,6 +201,7 @@ bool GameBoard::isLeftcollider()
 	{
 		for(int i = 0; i < list.size(); i++)
 		{
+			if(QString(typeid(*(list.at(i))).name()) != "blocks") continue;
 			if(list[i]->x() <= player->x() &&
 			   list[i]->y() <= player->y())
 			{
@@ -213,8 +218,10 @@ bool GameBoard::isRightcollider()
 	if(list.isEmpty()) return false;
 	else
 	{
+
 		for(int i = 0; i < list.size(); i++)
 		{
+			if(QString(typeid(*(list.at(i))).name()) != "blocks") continue;
 			if(list[i]->x() >= player->x() &&
 			   list[i]->y() <= player->y())
 			{
@@ -231,8 +238,10 @@ bool GameBoard::isUpcollider()
 	if(list.isEmpty()) return false;
 	else
 	{
+
 		for(int i = 0; i < list.size(); i++)
 		{
+			if(QString(typeid(*(list.at(i))).name()) != "blocks") continue;
 			if(list[i]->y() <= player->y())
 				return true;
 		}
@@ -242,12 +251,14 @@ bool GameBoard::isUpcollider()
 
 bool GameBoard::isDowncollider()
 {
-    QList<QGraphicsItem*> list = player->collidesItem();            //是否这一行有问题？collidesItem()还是collidingItems()？
+	QList<QGraphicsItem*> list = player->collidingItems();			//是否这一行有问题？collidesItem()还是collidingItems()？
+																	//回复楼上：的确有问题，少了个s
 	if(list.isEmpty()) return false;
 	else
 	{
 		for(int i = 0; i < list.size(); i++)
 		{
+			if(QString(typeid(*(list.at(i))).name()) != "blocks") continue;
 			if(list[i]->y() >= player->y())
 				return true;
 		}

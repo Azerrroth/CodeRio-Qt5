@@ -1,16 +1,17 @@
 #include "view.h"
+#include <QDebug>
 
 view::view(QWidget *parent) : QWidget(parent)
 {
-
+	control = new GameBoard;
+	qDebug() << "view was created" << endl;
 }
 
 void view::keyPressEvent(QKeyEvent *event)
 {
 	QList<QGraphicsItem*>list = control->getMario()->collidingItems();
 
-    if(control->getMario()->x() < 300
-            &&)
+    if(control->getMario()->x() < 300)
 	{ //300即为场景移动的分界处，小于300仅移动马里奥
 		if(event->key() == Qt::Key_D)
 		{
@@ -91,8 +92,7 @@ void view::keyPressEvent(QKeyEvent *event)
 
 void view::keyReleaseEvent(QKeyEvent *event)
 {
-    if(control->getMario()->x() < 300
-            &&)
+    if(control->getMario()->x() < 300)
     {
         if(event->key() == Qt::Key_Space)           //留个空槽，这个暂时没用
         {
@@ -120,7 +120,7 @@ void view::keyReleaseEvent(QKeyEvent *event)
                                                     //暂时不需要Q和E了
         else if(event->key() == Qt::Key_Space)      //这个不能改变isJumping，否则会出现马里奥斜跳和场景移动同时出现的状况
                                                     //需要一个新的来操作场景的函数
-        {
+		{
 
         }
     }
