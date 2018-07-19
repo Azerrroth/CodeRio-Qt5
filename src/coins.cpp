@@ -52,7 +52,7 @@ void coins::on_timer()//timer计时器出发的槽函数
     if(!coinExist)
         remove();
     static int cnt=0;
-    m_pix_one=QPixmap("");//picList[cnt]);
+    m_pix_one=QPixmap(picList[cnt]);
     cnt++;
     update();
     if(cnt>=picList.count())

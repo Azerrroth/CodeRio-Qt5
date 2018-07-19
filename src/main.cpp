@@ -21,8 +21,7 @@ int main(int argc, char *argv[])
 
     view* vie = new view;
     scene.addItem(vie->getControl()->getMario());
-    coins* coin=new coins;
-    scene.addItem(coin);
+
 
     /*    scene.additem(item);
     scene.additem(block);
