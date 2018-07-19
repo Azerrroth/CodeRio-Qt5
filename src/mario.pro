@@ -31,7 +31,8 @@ SOURCES += \
     background.cpp \
     view.cpp \
     coins.cpp \
-    myscene.cpp
+    myscene.cpp \
+    globalapplication.cpp
 
 HEADERS += \
     blocks.h \
@@ -40,7 +41,8 @@ HEADERS += \
     background.h \
     view.h \
     coins.h \
-    myscene.h
+    myscene.h \
+    globalapplication.h
 
 FORMS += \
         mainwindow.ui

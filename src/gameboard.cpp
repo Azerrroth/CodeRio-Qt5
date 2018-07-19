@@ -15,9 +15,9 @@ GameBoard::GameBoard(QObject *parent) : QObject(parent)
 {
     qDebug() << "GameBoard was created" << endl;
     timerId = startTimer(15);	//开启一个每隔15ms触发一次的计时器，timerId是该计时器的名称
-	player = new mario("mario.png");
-	back = new background("background");
-	setItems("info.txt");
+    player = new mario("mario.png");
+    back = new background("background");
+    setItems("info.txt");
 }
 
 void GameBoard::setItems(string file)
@@ -31,7 +31,7 @@ void GameBoard::setItems(string file)
 
         if(str.substr(0, 3) == "BLO")
         {
-			blocks* block = new blocks("block.png");
+            blocks* block = new blocks("block.png");
             block->setPos(x, y);
             blocklist.push_back(block);
         }
@@ -201,7 +201,7 @@ bool GameBoard::isLeftcollider()
     {
         for(int i = 0; i < list.size(); i++)
         {
-			if(QString(typeid(*(list.at(i))).name()) != "6blocks") continue;
+            if(QString(typeid(*(list.at(i))).name()) != "6blocks") continue;
             if(list[i]->x() <= player->x() &&
                     list[i]->y() <= player->y())
             {
@@ -221,7 +221,7 @@ bool GameBoard::isRightcollider()
 
         for(int i = 0; i < list.size(); i++)
         {
-			if(QString(typeid(*(list.at(i))).name()) != "6blocks") continue;
+            if(QString(typeid(*(list.at(i))).name()) != "6blocks") continue;
             if(list[i]->x() >= player->x() &&
                     list[i]->y() <= player->y())
             {
@@ -241,7 +241,7 @@ bool GameBoard::isUpcollider()
 
         for(int i = 0; i < list.size(); i++)
         {
-			if(QString(typeid(*(list.at(i))).name()) != "6blocks") continue;
+            if(QString(typeid(*(list.at(i))).name()) != "6blocks") continue;
             if(list[i]->y() <= player->y())
                 return true;
         }
@@ -258,7 +258,7 @@ bool GameBoard::isDowncollider()
     {
         for(int i = 0; i < list.size(); i++)
         {
-			if(QString(typeid(*(list.at(i))).name()) != "6blocks") continue;
+            if(QString(typeid(*(list.at(i))).name()) != "6blocks") continue;
             if(list[i]->y() >= player->y())
                 return true;
         }

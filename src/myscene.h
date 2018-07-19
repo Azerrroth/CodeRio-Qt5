@@ -6,10 +6,10 @@
 class MyScene : public QGraphicsScene
 {
 public:
-	MyScene();
+    MyScene();
 private:
-	void initialize();
-	view* vie;
+    void initialize();
+    view* vie;
 };
 
 #endif // MYSCENE_H

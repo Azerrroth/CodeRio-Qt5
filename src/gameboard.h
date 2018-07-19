@@ -48,8 +48,8 @@ public:
     void moveMario();	//该函数移动马里奥
 
     mario* getMario() {return player;}
-	QList<blocks*> getBlocks() {return blocklist; }
-	QList<coins*> getCoins() {return coinlist; }
+    QList<blocks*> getBlocks() {return blocklist; }
+    QList<coins*> getCoins() {return coinlist; }
     background* getBack() {return back;}
 
     bool isLeftcollider();				//判断马里奥左边的碰撞物是否影响了马里奥前进
@@ -66,7 +66,7 @@ private:
 
     //有一系列的障碍方块，故要用vector
     QList<blocks*> blocklist;
-	QList<coins*> coinlist;
+    QList<coins*> coinlist;
     background* back;
     //计时器，在构造函数中创建QTimer时把相应的值赋给它
     int timerId;
