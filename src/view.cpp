@@ -1,7 +1,12 @@
 #include "view.h"
 #include <QDebug>
 #include <QPainter>
+#include <fstream>
+#include <string>
 #include "gameboard.h"
+
+using std::string;
+using std::fstream;
 
 view::view()
 {
@@ -12,7 +17,7 @@ view::view()
 }
 
 QRectF view::boundingRect() const{
-	return QRectF(0,0,100,100);
+	return QRectF(0, 0, 100, 100);
 }
 
 void view::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
@@ -20,7 +25,6 @@ void view::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
 	Q_UNUSED(option);
 	Q_UNUSED(widget);
 }
-
 
 void view::keyPressEvent(QKeyEvent *event)
 {
@@ -141,5 +145,3 @@ void view::keyReleaseEvent(QKeyEvent *event)
         }
     }
 }
-
-

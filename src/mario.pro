@@ -30,7 +30,8 @@ SOURCES += \
     mario.cpp \
     background.cpp \
     view.cpp \
-    coins.cpp
+    coins.cpp \
+    myscene.cpp
 
 HEADERS += \
     blocks.h \
@@ -38,7 +39,8 @@ HEADERS += \
     mario.h \
     background.h \
     view.h \
-    coins.h
+    coins.h \
+    myscene.h
 
 FORMS += \
         mainwindow.ui

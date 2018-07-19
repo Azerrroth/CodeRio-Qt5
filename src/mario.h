@@ -12,7 +12,7 @@
 class mario: public QGraphicsObject
 {
 public:
-    mario(const QString pix);
+	mario(const QString pix = "mario.png");
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     void setColor(const QColor &color);

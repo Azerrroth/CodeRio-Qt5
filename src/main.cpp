@@ -5,10 +5,12 @@
 #include "blocks.h"
 #include "gameboard.h"
 #include "view.h"
+#include "myscene.h"
 #include <QCoreApplication>
 #include <QGraphicsScene>
 #include <QGraphicsRectItem>
 #include <QGraphicsView>
+
 class view;
 class GameBoard;
 
@@ -16,7 +18,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    QGraphicsScene scene;
+/*    QGraphicsScene scene;
 	QGraphicsView v(&scene);
 
     view* vie = new view;
@@ -38,8 +40,9 @@ int main(int argc, char *argv[])
     block3->setpos(300, 70);
     item->setpos(300, 120);*/
 
+	MyScene scene;
+	QGraphicsView v(&scene);
 
-    scene.setSceneRect(0, 0, 1450, 800);
     v.setWindowTitle("motherfucker");
 
     v.resize(1450,800);

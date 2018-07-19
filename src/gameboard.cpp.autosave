@@ -20,7 +20,7 @@ GameBoard::GameBoard(QObject *parent) : QObject(parent)
 	setItems("info.txt");
 }
 
-void GameBoard::setItems(string file)
+/*void GameBoard::setItems(string file)
 {
     fstream in(file);
     string str;
