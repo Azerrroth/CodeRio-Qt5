@@ -17,10 +17,16 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
     QGraphicsScene scene;
-
+	QGraphicsView v(&scene);
 
     view* vie = new view;
     scene.addItem(vie->getControl()->getMario());
+	vie->getControl()->getMario()->setPos(100, 700);
+	scene.addItem(vie);
+	for(int i = 0; i < vie->getControl()->getBlocks().size(); i++) {
+		scene.addItem(vie->getControl()->getBlocks().at(i));
+	}
+	vie->setPos(0, 0);
 
 
     /*    scene.additem(item);
@@ -34,7 +40,6 @@ int main(int argc, char *argv[])
 
 
     scene.setSceneRect(0, 0, 1450, 800);
-    QGraphicsView v(&scene);
     v.setWindowTitle("motherfucker");
 
     v.resize(1450,800);

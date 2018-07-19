@@ -1,14 +1,30 @@
 #include "view.h"
 #include <QDebug>
+#include <QPainter>
+#include "gameboard.h"
 
-view::view(QWidget *parent) : QWidget(parent)
+view::view()
 {
+	setFlag(QGraphicsItem::ItemIsFocusable);
+	setFlag(QGraphicsItem::ItemIsMovable);
     control = new GameBoard;
     qDebug() << "view was created" << endl;
 }
 
+QRectF view::boundingRect() const{
+	return QRectF(0,0,100,100);
+}
+
+void view::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+{
+	Q_UNUSED(option);
+	Q_UNUSED(widget);
+}
+
+
 void view::keyPressEvent(QKeyEvent *event)
 {
+	qDebug() << "key" << endl;
     QList<QGraphicsItem*>list = control->getMario()->collidingItems();
 
     if(control->getMario()->x() < 300)
