@@ -1,21 +1,33 @@
 #ifndef COINS_H
 #define COINS_H
 #include <QGraphicsObject>
-#include <QPixmap>
+#include <QLabel>
 
 class coins : public QGraphicsObject
 {
-public:
-	coins(const QString pix);
-	QRectF boundingRect() const;
-	void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-	void setColor(const QColor &color);
+    Q_OBJECT
 
-	//吃到金币后金币消失
-	void remove();
+public:
+    coins(QGraphicsObject *parent=nullptr);
+    ~coins();
+
+    QRectF boundingRect() const;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+
+
+    inline bool getCoinExist(){return coinExist;}//看金币是不是还存在
+
+    //吃到金币后金币消失
+    void remove();
 
 private:
-	QPixmap m_pix_one;
+    QPixmap m_pix_one;
+    QStringList picList;//动画每张图片的列表
+    QTimer *timer;//计时器
+    bool coinExist=1;
+
+private slots:
+    void on_timer();//计时器触发的槽函数
 };
 
 #endif // COINS_H

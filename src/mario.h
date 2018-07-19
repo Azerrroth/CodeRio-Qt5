@@ -12,7 +12,7 @@
 class mario: public QGraphicsObject
 {
 public:
-	mario(const QString pix);
+    mario(const QString pix);
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     void setColor(const QColor &color);
@@ -45,8 +45,8 @@ protected:
 
 private:
     QPixmap m_pix_one;
-	qreal move_x;
-	qreal move_y;
+    qreal move_x;
+    qreal move_y;
 
     int coins;      //金币
     int life;       //生命
