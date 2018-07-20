@@ -28,7 +28,7 @@ bool GlobalApplication::notify(QObject *obj, QEvent *e)
         QKeyEvent *keyEvent = static_cast<QKeyEvent *>(e);
         if(keyEvent->key() == Qt::Key_F1)
         {
-            //QDBG<< clName;
+            QDBG<< clName;
             //QDBG << "F1";
         }
         //    widget->keyPress(keyEvent);
