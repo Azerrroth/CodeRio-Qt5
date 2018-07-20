@@ -50,20 +50,59 @@ void MyScene::initialize()
         }
         else if(str.substr(0, 3) == "MON")
         {
-
+			monster* mon = new monster;
+			this->addItem(mon);
+			mon->setPos(x, y);
+			getControl()->getMonster().push_back(mon);
         }
-        else if(str.substr(0, 3) == "FLA")
-        {
 
-        }
         else if(str.substr(0, 3) == "MUS")
         {
-
+			mushroom* mus = new mushroom;
+			this->addItem(mus);
+			mus->setPos(x, y);
+			getControl()->getMushroom().push_back(mus);
         }
-        else if(str.substr(0, 3) == "TUR")
+		else if(str.substr(0, 3) == "CLO")
         {
-
+			cloud* clo = new cloud;
+			this->addItem(clo);
+			clo->setPos(x, y);
+			getControl()->getCloud().push_back(clo);
         }
+		else if(str.substr(0, 3) == "STO")
+		{
+			stone* sto = new stone;
+			this->addItem(sto);
+			sto->setPos(x, y);
+			getControl()->getStone().push_back(sto);
+		}
+		else if(str.substr(0, 3) == "QUE")
+		{
+			questionMark* que = new questionMark;
+			this->addItem(que);
+			que->setPos(x, y);
+			getControl()->getQue().push_back(que);
+		}
+		else if(str.substr(0, 3) == "BAS")
+		{
+			baseblock* bas = new baseblock;
+			this->addItem(bas);
+			bas->setPos(x, y);
+			getControl()->getBase().push_back(bas);
+		}
+		else if(str.substr(0, 3) == "TUB")
+		{
+
+		}
+		else if(str.substr(0, 3) == "FLO")
+		{
+
+		}
+		else if(str.substr(0, 3) == "FLA")
+		{
+
+		}
     }
 }
 void MyScene::keyPressEvent(QKeyEvent *event)

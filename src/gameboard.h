@@ -9,8 +9,15 @@
 
 #include "blocks.h"
 #include "mario.h"
-#include "background.h"
 #include "coins.h"
+#include "background.h"
+#include "baseblock.h"
+#include "questionmark.h"
+#include "stone.h"
+#include "monster.h"
+#include "cloud.h"
+#include "tube.h"
+#include "mushroom.h"
 #include <QKeyEvent>
 #include <QTime>
 #include <QTimer>
@@ -23,12 +30,12 @@ using std::string;
 //枚举类型，标志着碰撞体的类型
 enum colliderType
 {
-    block,
-    coin,
-    mushroom,
-    flag,
-    monster,
-    turtles
+	Block,
+	Boin,
+	Mushroom,
+	Flag,
+	Monster,
+	Turtles
 };
 
 
@@ -47,10 +54,17 @@ public:
     void moveView();	//该函数移动除了马里奥之外的内容，包括背景及障碍物
     void moveMario();	//该函数移动马里奥
 
-    mario* getMario() {return player;}
-    QList<blocks*> getBlocks() {return blocklist; }
-    QList<coins*> getCoins() {return coinlist; }
-    background* getBack() {return back;}
+	QList<blocks*> getBlocks() {return blocklist;}
+	QList<coins*> getCoins() {return coinlist;}
+	QList<baseblock*> getBase() {return baslist;}
+	QList<questionMark*> getQue() {return quelist;}
+	QList<stone*> getStone() {return stonelist;}
+	QList<cloud*> getCloud() {return cloudlist;}
+	QList<monster*> getMonster() {return monsterlist;}
+	QList<tube*> getTube() {return tubelist;}
+	QList<mushroom*> getMushroom() {return mushroomlist;}
+	background* getBack() {return back;}
+	mario* getMario() {return player;}
 
     bool isLeftcollider();				//判断马里奥左边的碰撞物是否影响了马里奥前进
     bool isRightcollider();				//判断马里奥右边的碰撞物是否影响了马里奥前进
@@ -62,12 +76,18 @@ public:
 private:
 
 
-    mario* player;
-
-    //有一系列的障碍方块，故要用vector
-    QList<blocks*> blocklist;
-    QList<coins*> coinlist;
-    background* back;
+	mario* player;
+	background* back;
+	//有一系列的障碍方块，故要用vector
+	QList<blocks*> blocklist;
+	QList<coins*> coinlist;
+	QList<baseblock*> baslist;
+	QList<questionMark*> quelist;
+	QList<stone*> stonelist;
+	QList<monster*> monsterlist;
+	QList<cloud*> cloudlist;
+	QList<tube*> tubelist;
+	QList<mushroom*> mushroomlist;
     //计时器，在构造函数中创建QTimer时把相应的值赋给它
     int timerId;
 

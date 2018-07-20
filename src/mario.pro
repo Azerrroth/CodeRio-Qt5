@@ -32,7 +32,14 @@ SOURCES += \
     view.cpp \
     coins.cpp \
     myscene.cpp \
-    globalapplication.cpp
+    globalapplication.cpp \
+    baseblock.cpp \
+    cloud.cpp \
+    monster.cpp \
+    mushroom.cpp \
+    questionmark.cpp \
+    stone.cpp \
+    tube.cpp
 
 HEADERS += \
     blocks.h \
@@ -42,7 +49,14 @@ HEADERS += \
     view.h \
     coins.h \
     myscene.h \
-    globalapplication.h
+    globalapplication.h \
+    baseblock.h \
+    cloud.h \
+    monster.h \
+    mushroom.h \
+    questionmark.h \
+    stone.h \
+    tube.h
 
 FORMS += \
         mainwindow.ui
