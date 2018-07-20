@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
 
     v.setWindowTitle("motherfucker");
 
-    v.resize(1450,800);
+    v.resize(1455,805);
     v.show();
 
     return a.exec();

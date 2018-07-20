@@ -18,10 +18,11 @@ MyScene::MyScene()
 
 void MyScene::initialize()
 {
-    addItem(vie->getControl()->getMario());
-    vie->getControl()->getMario()->setPos(100, 700);
     addItem(vie->getControl()->getBack());
     vie->getControl()->getBack()->setPos(0, 0);
+    addItem(vie->getControl()->getMario());
+    vie->getControl()->getMario()->setPos(100, 700);
+
     fstream in("info.txt");
     string str;
     while (getline(in, str))
