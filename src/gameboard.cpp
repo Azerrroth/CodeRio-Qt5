@@ -64,6 +64,8 @@ void GameBoard::setItems(string file)
 
 void GameBoard::timerEvent(QTimerEvent *event)
 {
+    if(player->x() >= 500) { player->setGoingRight(false); }
+    else if(player->x() <= 0) { player->setGoingLeft(false); }
     //	moveView();
     back->update();
     moveMario();
