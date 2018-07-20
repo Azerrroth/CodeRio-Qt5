@@ -31,8 +31,8 @@ void MyScene::initialize()
     string str;
     while (getline(in, str))
     {
-        int x = atoi(const_cast<char*>(str.substr(3, 7).c_str()));
-        int y = atoi(const_cast<char*>(str.substr(10, 7).c_str()));
+        int x = atoi(const_cast<char*>(str.substr(3, 5).c_str()));
+        int y = atoi(const_cast<char*>(str.substr(8, 3).c_str()));
 
         if(str.substr(0, 3) == "BLO")
         {
