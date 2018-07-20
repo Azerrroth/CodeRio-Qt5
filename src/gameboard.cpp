@@ -16,7 +16,7 @@ GameBoard::GameBoard(QObject *parent) : QObject(parent)
     qDebug() << "GameBoard was created" << endl;
     timerId = startTimer(15);	//开启一个每隔15ms触发一次的计时器，timerId是该计时器的名称
     player = new mario("mario.png");
-    back = new background("background");
+    back = new background("background.png");
     setItems("info.txt");
 }
 
@@ -65,6 +65,7 @@ void GameBoard::setItems(string file)
 void GameBoard::timerEvent(QTimerEvent *event)
 {
     //	moveView();
+    back->update();
     moveMario();
 }
 

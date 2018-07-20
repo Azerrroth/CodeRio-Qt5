@@ -20,6 +20,8 @@ void MyScene::initialize()
 {
     addItem(vie->getControl()->getBack());
     vie->getControl()->getBack()->setPos(0, 0);
+    vie->getControl()->getBack()->setZValue(-100);
+
     addItem(vie->getControl()->getMario());
     vie->getControl()->getMario()->setPos(100, 700);
 

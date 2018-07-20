@@ -27,7 +27,7 @@ mario::mario(const QString pix_one)
 QRectF mario::boundingRect() const
 {
     double penWidth = 1;
-    return QRectF(7.5 - penWidth / 2, 0 - penWidth / 2, 35 + penWidth, 50 + penWidth);
+    return QRectF(7.5 - penWidth / 2, 0 - penWidth / 2, 36 + penWidth, 50 + penWidth);
 }
 
 void mario::setMove(qreal x, qreal y)
