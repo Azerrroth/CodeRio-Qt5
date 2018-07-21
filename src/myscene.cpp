@@ -17,6 +17,17 @@ MyScene::MyScene()
     control=new GameBoard;
     initialize();
     setSceneRect(0, 0, 1450, 800);
+
+    timer = new QTimer;
+    connect(timer,SIGNAL(timeout()),this,SLOT(refresh()));
+    timer->start(3);
+
+}
+
+void MyScene::refresh()
+{
+    update();
+    advance();
 }
 
 void MyScene::initialize()
@@ -26,10 +37,17 @@ void MyScene::initialize()
     getControl()->getBack()->setZValue(-100);
 
     addItem(getControl()->getMario());
-    getControl()->getMario()->setPos(100, 700);
+    getControl()->getMario()->setPos(100, 650);
 
 	addItem(getControl()->getFlag());
 	getControl()->getFlag()->setPos(21150, 150);
+
+    {
+        coins* coi = new coins;
+        this->addItem(coi);
+        coi->setPos(200, -200000);
+        getControl()->getCoins().push_back(coi);
+    }
 
     fstream in("info.txt");
     string str;
@@ -45,7 +63,7 @@ void MyScene::initialize()
             blo->setPos(x, y);
             getControl()->getBlocks().push_back(blo);
         }
-        else if(str.substr() == "COI")
+        else if(str.substr(0,3) == "COI")
         {
             coins* coi = new coins;
             this->addItem(coi);
