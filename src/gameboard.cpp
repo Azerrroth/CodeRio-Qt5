@@ -14,7 +14,7 @@ using std::string;
 GameBoard::GameBoard(QObject *parent) : QObject(parent)
 {
     qDebug() << "GameBoard was created" << endl;
-    timerId = startTimer(15);	//开启一个每隔15ms触发一次的计时器，timerId是该计时器的名称
+    //timerId = startTimer(15);                     //开启一个每隔15ms触发一次的计时器，timerId是该计时器的名称，暂时取消！
     player = new mario("mario.png");
     back = new background("background.png");
 	fla = new flag;
@@ -63,14 +63,13 @@ void GameBoard::setItems(string file)
 
 }
 
-void GameBoard::timerEvent(QTimerEvent *event)
+/*void GameBoard::timerEvent(QTimerEvent *event)
 {
-    if(player->x() >= 500) { player->setGoingRight(false); }
-    else if(player->x() <= 0) { player->setGoingLeft(false); }
+    if(player->x() <= 0) { player->setGoingLeft(false); }
     //	moveView();
     back->update();
     moveMario();
-}
+}*/
 
 /*void GameBoard::moveView()
 {
@@ -114,12 +113,13 @@ void GameBoard::moveMario()
             player->set_x_Relative(temp_x_position);
             player->set_y_Relative(temp_y_position);
 
-            qDebug() << player->get_x_Relative() << player->get_y_Relayive();               //这一行是调试用信息，可删去
+            qDebug() << player->pos().x() << player->pos().y();               //这一行是调试用信息，可删去
 
             player->setPos(player->get_start_x()-(temp_x_position-remember_x),player->get_start_y()-temp_y_position+remember_y);        //描绘坐标点
 
             if(isDowncollider() == true)                                                    //若底部碰上物体，便初始化
             {
+                qDebug() << "get down";
                 player->setJumping(false);
                 player->set_x_Relative(-100);
             }
@@ -137,12 +137,13 @@ void GameBoard::moveMario()
             player->set_x_Relative(temp_x_position);
             player->set_y_Relative(temp_y_position);
 
-            qDebug() << player->get_x_Relative() << player->get_y_Relayive();               //这一行是调试用信息，可删去
+            qDebug() << player->pos().x() << player->pos().y();               //这一行是调试用信息，可删去
 
             player->setPos(player->get_start_x()+(temp_x_position-remember_x),player->get_start_y()-temp_y_position+remember_y);        //描绘坐标点
 
             if(isDowncollider() == true)                                                    //若底部碰上物体，便初始化
             {
+                qDebug() << "get down";
                 player->setJumping(false);
                 player->set_x_Relative(-100);
             }
@@ -159,13 +160,14 @@ void GameBoard::moveMario()
             player->set_x_Relative(temp_x_position);
             player->set_y_Relative(temp_y_position);
 
-            qDebug() << player->get_x_Relative() << player->get_y_Relayive();               //这两行是调试用信息，可删去
+            qDebug() << player->pos().x() << player->pos().y();               //这两行是调试用信息，可删去
             Q_UNUSED(remember_x);
 
             player->setPos(player->get_start_x(),player->get_start_y()-temp_y_position+remember_y);                                     //描绘坐标点
 
             if(isDowncollider() == true)                                                    //若底部碰上物体，便初始化
             {
+                qDebug() << "get down";
                 player->setJumping(false);
                 player->set_x_Relative(-100);
             }
@@ -184,13 +186,14 @@ void GameBoard::moveMario()
         player->set_x_Relative(temp_x_position);
         player->set_y_Relative(temp_y_position);
 
-        qDebug() << player->get_x_Relative() << player->get_y_Relayive();               //这两行是调试用信息，可删去
+        qDebug() << player->pos().x() << player->pos().y();               //这两行是调试用信息，可删去
         Q_UNUSED(remember_x);
 
         player->setPos(player->get_start_x(),player->get_start_y()-temp_y_position+remember_y);                                     //描绘坐标点
 
         if(isDowncollider() == true)                                                    //若底部碰上物体，便初始化
         {
+            qDebug() << "get down";
             player->setJumping(false);
             player->set_x_Relative(-100);
         }

@@ -95,11 +95,14 @@ private:
 	QList<mushroom*> mushroomlist;
 	QList<flower*> flowerlist;
     //计时器，在构造函数中创建QTimer时把相应的值赋给它
-    int timerId;
+
+    //int timerId;                          //暂时取消
 
     //把那些移动的操作都放在timeEvent实现
     //并且在该函数内部同时实现如果没有碰撞体就下落的功能
-    void timerEvent(QTimerEvent* event);
+
+    //void timerEvent(QTimerEvent* event);                      //暂时取消
+
     //该函数应该在构造函数中调用，通过读取一个txt文件从而把所有的blocks和其他的内容初始化
     //并且同时把这些内容的位置确定
     //完成setPos操作
