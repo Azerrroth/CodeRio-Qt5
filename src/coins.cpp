@@ -34,7 +34,7 @@ coins::coins(QGraphicsObject *parent)
     }
     timer=new QTimer;
     connect(timer,SIGNAL(timeout()),this,SLOT(on_timer()));
-    timer->start(200);
+    timer->start(100);
 
 }
 
@@ -70,7 +70,7 @@ void coins::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
 {
     Q_UNUSED(option);
     Q_UNUSED(widget);
-    painter->drawPixmap(20, 20, m_pix_one);
+    painter->drawPixmap(0, 10, m_pix_one);
 }
 
 

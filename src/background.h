@@ -23,11 +23,13 @@ public:
     //如果不能通过设置大小为0来避免碰撞的话，应该通过判断类型名称来避免
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-
+    inline void setX(int a){x=-a;}
 private:
     QPixmap m_pix_one;
     qreal move_x;
     qreal move_y;
+    int x=0;//画背景图用
+
 };
 
 #endif // BACKGROUND_H

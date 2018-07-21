@@ -11,6 +11,7 @@ background::background(const QString pix)
 {
     m_pix_one.load(pix);
     qDebug() << "background was created" << endl;
+
 }
 
 
@@ -26,5 +27,5 @@ QRectF background::boundingRect() const {
 void background::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
     Q_UNUSED(option);
     Q_UNUSED(widget);
-    painter->drawPixmap(0, 0, m_pix_one);
+    painter->drawPixmap(x, 0, m_pix_one);
 }

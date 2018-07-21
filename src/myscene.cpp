@@ -295,6 +295,11 @@ void MyScene::moveView()                                    //场景移动相关
         pos_x += 2;
         setSceneRect(pos_x,0,1450,800);
         int temp = pos_x;
+        control->getBack()->setX(temp);
         control->getBack()->setPos(temp,0);
+
+        control->getBack()->update();
+        //调用update()的时候会自动调用paint函数，所以给paint里drawpixmap的横坐标改成参数x
+        //修改x的值，让背景图片paint起点在负方向，就实现北京移动了
     }
 }

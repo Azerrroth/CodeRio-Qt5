@@ -24,9 +24,9 @@ public:
     bool getGoingRight() { return isGoingRight; }       //给gameboard中的moveMario提供一个接口，判断是否发出往右的指令
     bool getJumping() { return isJumping; }             //给gameboard中的moveMario提供一个接口，判断是否发出往右的指令
 
-    bool setGoingLeft(bool a) { isGoingLeft = a; }      //给gameboard中的moveMario提供一个接口，改变isGoingLeft的值
-    bool setGoingRight(bool a) { isGoingRight = a; }    //给gameboard中的moveMario提供一个接口，改变isGoingRight的值
-    bool setJumping(bool a) { isJumping = a; }          //给gameboard中的moveMario提供一个接口，改变isJumping的值
+    void setGoingLeft(bool a) { isGoingLeft = a; }      //给gameboard中的moveMario提供一个接口，改变isGoingLeft的值
+    void setGoingRight(bool a) { isGoingRight = a; }    //给gameboard中的moveMario提供一个接口，改变isGoingRight的值
+    void setJumping(bool a) { isJumping = a; }          //给gameboard中的moveMario提供一个接口，改变isJumping的值
 
     void set_start_x(int a) { start_x = a;}             //从这往下到get_y_Relative()都是跳跃相关数值获取和设定
     void set_start_y(int a) { start_y = a;}
