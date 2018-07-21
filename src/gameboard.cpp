@@ -205,7 +205,12 @@ bool GameBoard::isLeftcollider()
     {
         for(int i = 0; i < list.size(); i++)
         {
-            if(QString(typeid(*(list.at(i))).name()) != "6blocks") continue;
+			if(QString(typeid(*(list.at(i))).name()) != "6blocks" &&
+			   QString(typeid(*list.at(i)).name()) != "9baseblock" &&
+			   QString(typeid(*list.at(i)).name()) != "12questionMark" &&
+			   QString(typeid(*list.at(i)).name()) != "5stone" &&
+			   QString(typeid(*list.at(i)).name()) != "5cloud" &&
+			   QString(typeid(*list.at(i)).name()) != "4tube") continue;
             if(list[i]->x() <= player->x() &&
                     list[i]->y() <= player->y())
             {
@@ -225,7 +230,12 @@ bool GameBoard::isRightcollider()
 
         for(int i = 0; i < list.size(); i++)
         {
-            if(QString(typeid(*(list.at(i))).name()) != "6blocks") continue;
+			if(QString(typeid(*(list.at(i))).name()) != "6blocks" &&
+			   QString(typeid(*list.at(i)).name()) != "9baseblock" &&
+			   QString(typeid(*list.at(i)).name()) != "12questionMark" &&
+			   QString(typeid(*list.at(i)).name()) != "5stone" &&
+			   QString(typeid(*list.at(i)).name()) != "5cloud" &&
+			   QString(typeid(*list.at(i)).name()) != "4tube") continue;
             if(list[i]->x() >= player->x() &&
                     list[i]->y() <= player->y())
             {
@@ -245,8 +255,12 @@ bool GameBoard::isUpcollider()
 
         for(int i = 0; i < list.size(); i++)
         {
-            if(QString(typeid(*(list.at(i))).name()) != "6blocks") continue;
-            if(list[i]->y() <= player->y())
+			if(QString(typeid(*(list.at(i))).name()) != "6blocks" &&
+			   QString(typeid(*list.at(i)).name()) != "9baseblock" &&
+			   QString(typeid(*list.at(i)).name()) != "12questionMark" &&
+			   QString(typeid(*list.at(i)).name()) != "5stone" &&
+			   QString(typeid(*list.at(i)).name()) != "5cloud" &&
+			   QString(typeid(*list.at(i)).name()) != "4tube") continue;
                 return true;
         }
         return false;
@@ -262,8 +276,12 @@ bool GameBoard::isDowncollider()
     {
         for(int i = 0; i < list.size(); i++)
         {
-            if(QString(typeid(*(list.at(i))).name()) != "6blocks") continue;
-            if(list[i]->y() >= player->y())
+			if(QString(typeid(*(list.at(i))).name()) != "6blocks" &&
+			   QString(typeid(*list.at(i)).name()) != "9baseblock" &&
+			   QString(typeid(*list.at(i)).name()) != "12questionMark" &&
+			   QString(typeid(*list.at(i)).name()) != "5stone" &&
+			   QString(typeid(*list.at(i)).name()) != "5cloud" &&
+			   QString(typeid(*list.at(i)).name()) != "4tube") continue;
                 return true;
         }
         return false;
