@@ -1,8 +1,14 @@
+更新管子编码方式：
+首位固定为T
+第二位为T或者F，标志着是否倒置（T为倒置的管子，F为非倒置）
+第三位为S或M或L，标志着三种长度（短，中，长）
+
+
 BLO：blocks类，即障碍物
 STO：stone类，石头
 CLO：cloud类，云
 QUE：questionmark类，问号方块
-TUB：tube类（暂时没有完成），管子
+//TUB：tube类（暂时没有完成），管子
 BAS：baseblock类，地基方块
 COI：coins类，即为金币
 MON：monsters类，即为怪物

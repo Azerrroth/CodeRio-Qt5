@@ -17,6 +17,7 @@ GameBoard::GameBoard(QObject *parent) : QObject(parent)
     timerId = startTimer(15);	//开启一个每隔15ms触发一次的计时器，timerId是该计时器的名称
     player = new mario("mario.png");
     back = new background("background.png");
+	fla = new flag;
     setItems("info.txt");
 }
 

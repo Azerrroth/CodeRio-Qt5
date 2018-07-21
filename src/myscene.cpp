@@ -1,5 +1,6 @@
 #include "myscene.h"
 #include "view.h"
+#include "flag.h"
 #include <fstream>
 #include <string>
 #include <algorithm>
@@ -26,6 +27,9 @@ void MyScene::initialize()
 
     addItem(getControl()->getMario());
     getControl()->getMario()->setPos(100, 700);
+
+	addItem(getControl()->getFlag());
+	getControl()->getFlag()->setPos(21150, 150);
 
     fstream in("info.txt");
     string str;
@@ -91,13 +95,63 @@ void MyScene::initialize()
 			bas->setPos(x, y);
 			getControl()->getBase().push_back(bas);
 		}
-		else if(str.substr(0, 3) == "TUB")
+		else if(str[0] == 'T')
 		{
-
+			if(str[1] == 'T')
+			{
+				if(str[2] == 'S')
+				{
+					tube* tub = new tube(Short, true);
+					this->addItem(tub);
+					tub->setPos(x, y);
+					getControl()->getTube().push_back(tub);
+				}
+				else if(str[2] == 'M')
+				{
+					tube* tub = new tube(Medium, true);
+					this->addItem(tub);
+					tub->setPos(x, y);
+					getControl()->getTube().push_back(tub);
+				}
+				else if(str[2] == 'L')
+				{
+					tube* tub = new tube(Long, true);
+					this->addItem(tub);
+					tub->setPos(x, y);
+					getControl()->getTube().push_back(tub);
+				}
+			}
+			else if(str[1] == 'F')
+			{
+				if(str[2] == 'S')
+				{
+					tube* tub = new tube(Short, false);
+					this->addItem(tub);
+					tub->setPos(x, y);
+					getControl()->getTube().push_back(tub);
+				}
+				else if(str[2] == 'M')
+				{
+					tube* tub = new tube(Medium, false);
+					this->addItem(tub);
+					tub->setPos(x, y);
+					getControl()->getTube().push_back(tub);
+				}
+				else if(str[2] == 'L')
+				{
+					tube* tub = new tube(Long, false);
+					this->addItem(tub);
+					tub->setPos(x, y);
+					getControl()->getTube().push_back(tub);
+				}
+			}
 		}
 		else if(str.substr(0, 3) == "FLO")
 		{
-
+			flower* flo = new flower;
+			this->addItem(flo);
+			flo->setPos(x, y);
+			getControl()->getFlower().push_back(flo);
 		}
 		else if(str.substr(0, 3) == "FLA")
 		{

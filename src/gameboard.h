@@ -17,7 +17,9 @@
 #include "monster.h"
 #include "cloud.h"
 #include "tube.h"
+#include "flower.h"
 #include "mushroom.h"
+#include "flag.h"
 #include <QKeyEvent>
 #include <QTime>
 #include <QTimer>
@@ -63,8 +65,10 @@ public:
 	QList<monster*> getMonster() {return monsterlist;}
 	QList<tube*> getTube() {return tubelist;}
 	QList<mushroom*> getMushroom() {return mushroomlist;}
+	QList<flower*> getFlower() {return flowerlist;}
 	background* getBack() {return back;}
 	mario* getMario() {return player;}
+	flag* getFlag() {return fla;}
 
     bool isLeftcollider();				//判断马里奥左边的碰撞物是否影响了马里奥前进
     bool isRightcollider();				//判断马里奥右边的碰撞物是否影响了马里奥前进
@@ -78,6 +82,7 @@ private:
 
 	mario* player;
 	background* back;
+	flag* fla;
 	//有一系列的障碍方块，故要用vector
 	QList<blocks*> blocklist;
 	QList<coins*> coinlist;
@@ -88,6 +93,7 @@ private:
 	QList<cloud*> cloudlist;
 	QList<tube*> tubelist;
 	QList<mushroom*> mushroomlist;
+	QList<flower*> flowerlist;
     //计时器，在构造函数中创建QTimer时把相应的值赋给它
     int timerId;
 

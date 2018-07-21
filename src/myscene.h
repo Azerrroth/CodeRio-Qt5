@@ -2,6 +2,18 @@
 #define MYSCENE_H
 #include <QGraphicsScene>
 #include "gameboard.h"
+#include "blocks.h"
+#include "mario.h"
+#include "coins.h"
+#include "background.h"
+#include "baseblock.h"
+#include "questionmark.h"
+#include "stone.h"
+#include "monster.h"
+#include "cloud.h"
+#include "flower.h"
+#include "tube.h"
+#include "mushroom.h"
 
 class MyScene : public QGraphicsScene
 {

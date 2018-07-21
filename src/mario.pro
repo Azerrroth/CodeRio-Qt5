@@ -39,7 +39,9 @@ SOURCES += \
     mushroom.cpp \
     questionmark.cpp \
     stone.cpp \
-    tube.cpp
+    tube.cpp \
+    flower.cpp \
+    flag.cpp
 
 HEADERS += \
     blocks.h \
@@ -56,7 +58,9 @@ HEADERS += \
     mushroom.h \
     questionmark.h \
     stone.h \
-    tube.h
+    tube.h \
+    flower.h \
+    flag.h
 
 FORMS += \
         mainwindow.ui

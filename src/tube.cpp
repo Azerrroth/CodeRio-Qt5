@@ -3,14 +3,15 @@
 #include <QPixmap>
 #include <QPainter>
 
-tube::tube(length type)
+tube::tube(length type, bool rev)
 {
 	len = type;
+	reverse = rev;
 }
 
 QRectF tube::boundingRect() const {
 	double penwidth = 1;
-	switch (len) {
+	switch (len) {					//根据不同长短来返回不同大小矩形
 	case Short:
 		return QRect(0 - penwidth / 2, 0 - penwidth / 2,
 					 49 + penwidth, 49 + penwidth);
@@ -34,14 +35,23 @@ void tube::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
 	Q_UNUSED(widget);
 	switch (len) {
 	case Short:
-		m_pix_one.load("shortTube.png");
+	{
+		if(!reverse) m_pix_one.load("shortTube.png");
+		else m_pix_one.load("_shortTube.png");
 		break;
+	}
 	case Medium:
-		m_pix_one.load("mediumTube.png");
+	{
+		if(!reverse) m_pix_one.load("mediumTube.png");
+		else m_pix_one.load("_mediumTube.png");
 		break;
+	}
 	case Long:
-		m_pix_one.load("longTube.png");
+	{
+		if(!reverse) m_pix_one.load("longTube.png");
+		else m_pix_one.load("_longTube.png");
 		break;
+	}
 	default:
 		break;
 	}
