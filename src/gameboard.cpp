@@ -289,7 +289,9 @@ bool GameBoard::isDowncollider()
 			   QString(typeid(*list.at(i)).name()) != "4tube") continue;
 			qDebug() << "block";
 			qDebug() << player->y() << " " << list[i]->y();
-			if(list[i]->y() == (player->y() + 50)){
+			if(list[i]->y() <= (player->y() + 50) &&
+			   list[i]->y() >= (player->y() + 48))
+			{
 				qDebug() << "DownTrue";
 				return true;
 			}
