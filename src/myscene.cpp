@@ -14,6 +14,9 @@ MyScene::MyScene()
     //vie = new view;
     //addItem(vie);
     //vie->setPos(0, 0);
+    timerId = startTimer(15);	//开启一个每隔15ms触发一次的计时器，timerId是该计时器的名称
+    pos_x = 0;
+    isMoving = false;
     control=new GameBoard;
     initialize();
     setSceneRect(0, 0, 1450, 800);
@@ -179,11 +182,11 @@ void MyScene::initialize()
 }
 void MyScene::keyPressEvent(QKeyEvent *event)
 {
-   qDebug() << "key" << endl;
+    //qDebug() << "key" << endl;
     QList<QGraphicsItem*>list = control->getMario()->collidingItems();
 
-    if(control->getMario()->x() <= 500 && control->getMario()->x() > 0)
-    { //300即为场景移动的分界处，小于300仅移动马里奥
+    if(control->getMario()->x() > pos_x && control->getMario()->x() < pos_x + 500)
+    {
         if(event->key() == Qt::Key_D)
         {
             control->getMario()->setGoingRight(true);           //只需要在按下时候改变右走状态的布尔值，而判断碰撞物在moveMario里面
@@ -203,24 +206,28 @@ void MyScene::keyPressEvent(QKeyEvent *event)
             }
         }
     }
-    else if(control->getMario()->x() <= 0)
+    else if(control->getMario()->x() <= pos_x)
     {
         if(event->key() == Qt::Key_D)
         {
             control->getMario()->setGoingRight(true);
         }
     }
-    else                                            //场景移动还未写
+    else if(control->getMario()->x() >= pos_x + 500)                                           //场景移动还未写
     {
+        qDebug() << "set";                      //调试信息
         if(event->key() == Qt::Key_D)
         {
-
+            control->getMario()->setGoingRight(true);
+            isMoving = true;
         }
         else if(event->key() == Qt::Key_A)
         {
-
+            isMoving = false;
+            control->getMario()->setGoingLeft(true);
         }
         else if(event->key() == Qt::Key_Space)      //这个不能改变isJumping，否则会出现马里奥斜跳和场景移动同时出现的状况
+                                                    //7.21 18：13分更新：或许可以使用isJumping，因为机制与预想的已经不同了
         {
 
         }
@@ -229,7 +236,7 @@ void MyScene::keyPressEvent(QKeyEvent *event)
 
 void MyScene::keyReleaseEvent(QKeyEvent *event)
 {
-    if(control->getMario()->x() <= 500 && control->getMario()->x() > 0)
+    if(control->getMario()->x() > pos_x && control->getMario()->x() < pos_x + 500)
     {
         if(event->key() == Qt::Key_Space)           //留个空槽，这个暂时没用
         {
@@ -244,19 +251,50 @@ void MyScene::keyReleaseEvent(QKeyEvent *event)
             control->getMario()->setGoingRight(false);
         }
     }
-    else                                            //和移动场景相关的
+    else if(control->getMario()->x() <= pos_x)
     {
         if(event->key() == Qt::Key_D)
         {
-
+            control->getMario()->setGoingRight(false);
+        }
+    }
+    else if(control->getMario()->x() >= pos_x + 500)                                           //和移动场景相关的
+    {
+        qDebug() << "unset";            //调试信息
+        if(event->key() == Qt::Key_D)
+        { 
+            control->getMario()->setGoingRight(false);
+            isMoving = false;
         }
         else if(event->key() == Qt::Key_A)
         {
-
+            control->getMario()->setGoingLeft(false);
         }
         else if(event->key() == Qt::Key_Space)      //这个不能改变isJumping，否则会出现马里奥斜跳和场景移动同时出现的状况
+                                                    //7.21 18：13分更新：或许可以使用isJumping，因为机制与预想的已经不同了
         {
 
         }
+    }
+}
+
+void MyScene::timerEvent(QTimerEvent *event)                //timerevent改动到了这里
+{
+    Q_UNUSED(event);
+    if(control->getMario()->x() <= 0) { control->getMario()->setGoingLeft(false); }
+    control->getBack()->update();
+    control->moveMario();
+    moveView();
+}
+
+void MyScene::moveView()                                    //场景移动相关函数
+{
+    if(isMoving)
+    {
+        qDebug() << "moveView";                             //调试信息
+        pos_x += 2;
+        setSceneRect(pos_x,0,1450,800);
+        int temp = pos_x;
+        control->getBack()->setPos(temp,0);
     }
 }

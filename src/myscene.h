@@ -28,6 +28,7 @@ public:
     void keyPressEvent(QKeyEvent* event);
     void keyReleaseEvent(QKeyEvent* event);
     GameBoard* getControl(){return control;}
+    void moveView();
 
 private:
     void initialize();
@@ -36,8 +37,17 @@ private:
 private:
     GameBoard* control;
 
+<<<<<<< HEAD
 private slots:
     void refresh();
+=======
+    void timerEvent(QTimerEvent* event);            //timerevent从gameboard改动到了myscene
+    int timerId;
+
+    int pos_x;                      //判断移动的参数
+    bool isMoving;
+
+>>>>>>> b1140cb7202a24023e6d21c247877873dc67701a
 };
 
 #endif // MYSCENE_H
