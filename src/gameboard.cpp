@@ -86,13 +86,13 @@ void GameBoard::moveMario()
 
     if(player->getGoingLeft()
             && !player->getJumping()            //玩家不是跳的时候才行
-            && !isRightcollider())              //左侧没有物体才能走
+			&& !isLeftcollider())              //左侧没有物体才能走
     {
         player->moveBy(-2,0);
     }
     else if(player->getGoingRight()
             && !player->getJumping()            //玩家不是跳的时候才行
-            && !isLeftcollider())               //右侧没有物体才能走
+			&& !isRightcollider())               //右侧没有物体才能走
     {
         player->moveBy(2,0);
     }
@@ -264,7 +264,9 @@ bool GameBoard::isUpcollider()
 			   QString(typeid(*list.at(i)).name()) != "5stone" &&
 			   QString(typeid(*list.at(i)).name()) != "5cloud" &&
 			   QString(typeid(*list.at(i)).name()) != "4tube") continue;
-                return true;
+			   if(list[i]->y() <= (player->y() + 50) &&
+				  list[i]->y() >= (player->y() + 45) &&
+				  list[i]->x() ) return true;
         }
         return false;
     }
@@ -285,8 +287,13 @@ bool GameBoard::isDowncollider()
 			   QString(typeid(*list.at(i)).name()) != "5stone" &&
 			   QString(typeid(*list.at(i)).name()) != "5cloud" &&
 			   QString(typeid(*list.at(i)).name()) != "4tube") continue;
-                return true;
+			qDebug() << "block";
+			qDebug() << player->y() << " " << list[i]->y();
+			if(list[i]->y() == (player->y() + 50)){
+				qDebug() << "DownTrue";
+				return true;
+			}
         }
-        return false;
+		return false;
     }
 }
