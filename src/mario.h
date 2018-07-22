@@ -34,11 +34,11 @@ public:
     int get_start_x() { return start_x; }
     int get_start_y() { return start_y; }
 
-    void set_x_Relative(int a) { x_Relative = a; }
+    void set_x_Relative(float a) { x_Relative = a; }
     void set_y_Relative(int a) { y_Relative = a; }
 
-    int get_x_Relative() { return x_Relative; }
-    int get_y_Relayive() { return y_Relative; }
+    float get_x_Relative() { return x_Relative; }
+    int get_y_Relative() { return y_Relative; }
 
 protected:
 
@@ -57,7 +57,7 @@ private:
 
     int start_x;                //以下四个变量都是跳跃相关变量
     int start_y;
-    int x_Relative;
+    float x_Relative;
     int y_Relative;
 
 };

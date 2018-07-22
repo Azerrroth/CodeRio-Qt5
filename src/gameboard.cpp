@@ -86,7 +86,7 @@ void GameBoard::moveMario()
 
     if(player->getGoingLeft()
             && !player->getJumping()            //玩家不是跳的时候才行
-			&& !isLeftcollider())              //左侧没有物体才能走
+            && !isLeftcollider())              //左侧没有物体才能走
     {
         player->moveBy(-2,0);
     }
@@ -103,10 +103,12 @@ void GameBoard::moveMario()
         if(player->getGoingLeft()
                 && !isLeftcollider())           //左侧不能有阻挡
         {
+            if(player->get_y_Relative() >= -191)
+            {
             player->set_start_x(player->pos().x());
             player->set_start_y(player->pos().y());
             int remember_x = player->get_x_Relative();
-            int remember_y = player->get_y_Relayive();
+            int remember_y = player->get_y_Relative();
 
             int temp_x_position = remember_x + 2;
             int temp_y_position = (-0.02*(temp_x_position*temp_x_position)+200);
@@ -114,23 +116,34 @@ void GameBoard::moveMario()
             player->set_y_Relative(temp_y_position);
 
             qDebug() << player->pos().x() << player->pos().y();               //这一行是调试用信息，可删去
+            qDebug() << player->get_y_Relative();
 
             player->setPos(player->get_start_x()-(temp_x_position-remember_x),player->get_start_y()-temp_y_position+remember_y);        //描绘坐标点
+            }
+
+            else if(player->get_y_Relative() < -191)
+            {
+                qDebug() << "working";
+                player->moveBy(0,0.5);
+            }
 
             if(isDowncollider() == true)                                                    //若底部碰上物体，便初始化
             {
                 qDebug() << "get down";
                 player->setJumping(false);
                 player->set_x_Relative(-100);
+                player->set_y_Relative(0);
             }
         }
         else if(player->getGoingRight()
                 && !isRightcollider())          //右侧不能有阻挡
         {
+            if(player->get_y_Relative() >= -191)
+            {
             player->set_start_x(player->pos().x());
             player->set_start_y(player->pos().y());
             int remember_x = player->get_x_Relative();
-            int remember_y = player->get_y_Relayive();
+            int remember_y = player->get_y_Relative();
 
             int temp_x_position = remember_x + 2;
             int temp_y_position = (-0.02*(temp_x_position*temp_x_position)+200);
@@ -138,22 +151,32 @@ void GameBoard::moveMario()
             player->set_y_Relative(temp_y_position);
 
             qDebug() << player->pos().x() << player->pos().y();               //这一行是调试用信息，可删去
+            qDebug() << player->get_y_Relative();
 
             player->setPos(player->get_start_x()+(temp_x_position-remember_x),player->get_start_y()-temp_y_position+remember_y);        //描绘坐标点
+            }
+            else if(player->get_y_Relative() < -191)
+            {
+                qDebug() << "working";
+                player->moveBy(0,0.5);
+            }
 
             if(isDowncollider() == true)                                                    //若底部碰上物体，便初始化
             {
                 qDebug() << "get down";
                 player->setJumping(false);
                 player->set_x_Relative(-100);
+                player->set_y_Relative(0);
             }
         }
         else if(player->getJumping())
         {
+            if(player->get_y_Relative() >= -191)
+            {
             player->set_start_x(player->pos().x());
             player->set_start_y(player->pos().y());
             int remember_x = player->get_x_Relative();
-            int remember_y = player->get_y_Relayive();
+            int remember_y = player->get_y_Relative();
 
             int temp_x_position = remember_x + 2;
             int temp_y_position = (-0.02*(temp_x_position*temp_x_position)+200);
@@ -161,25 +184,36 @@ void GameBoard::moveMario()
             player->set_y_Relative(temp_y_position);
 
             qDebug() << player->pos().x() << player->pos().y();               //这两行是调试用信息，可删去
+            qDebug() << player->get_y_Relative();
             Q_UNUSED(remember_x);
 
             player->setPos(player->get_start_x(),player->get_start_y()-temp_y_position+remember_y);                                     //描绘坐标点
+            }
+            else if(player->get_y_Relative() < -191)
+            {
+                qDebug() << "working";
+                player->moveBy(0,0.5);
+            }
 
             if(isDowncollider() == true)                                                    //若底部碰上物体，便初始化
             {
                 qDebug() << "get down";
                 player->setJumping(false);
                 player->set_x_Relative(-100);
+                player->set_y_Relative(0);
             }
         }
     }
+
     else if(player->getJumping() && (isUpcollider()||isLeftcollider()||isRightcollider()))  //应该会在这里解决跳的过程中碰上东西的问题
         //用了垂直下落的代码，还未在这个条件下进行测试！！
     {
+        if(player->get_y_Relative() >= -191)
+        {
         player->set_start_x(player->pos().x());
         player->set_start_y(player->pos().y());
         int remember_x = player->get_x_Relative();
-        int remember_y = player->get_y_Relayive();
+        int remember_y = player->get_y_Relative();
 
         int temp_x_position = remember_x + 2;
         int temp_y_position = (-0.02*(temp_x_position*temp_x_position)+200);
@@ -187,15 +221,23 @@ void GameBoard::moveMario()
         player->set_y_Relative(temp_y_position);
 
         qDebug() << player->pos().x() << player->pos().y();               //这两行是调试用信息，可删去
+        qDebug() << player->get_y_Relative();
         Q_UNUSED(remember_x);
 
         player->setPos(player->get_start_x(),player->get_start_y()-temp_y_position+remember_y);                                     //描绘坐标点
-
+        }
+        else if(player->get_y_Relative() < -191)
+        {
+            qDebug() << "working";
+            player->moveBy(0,0.5);
+        }
+        qDebug() << player->get_y_Relative();
         if(isDowncollider() == true)                                                    //若底部碰上物体，便初始化
         {
             qDebug() << "get down";
             player->setJumping(false);
             player->set_x_Relative(-100);
+            player->set_y_Relative(0);
         }
     }
 }
@@ -264,8 +306,8 @@ bool GameBoard::isUpcollider()
 			   QString(typeid(*list.at(i)).name()) != "5stone" &&
 			   QString(typeid(*list.at(i)).name()) != "5cloud" &&
 			   QString(typeid(*list.at(i)).name()) != "4tube") continue;
-			   if(list[i]->y() <= (player->y() + 50) &&
-				  list[i]->y() >= (player->y() + 45) &&
+               if(list[i]->y() >= (player->y() - 50) &&
+                  list[i]->y() <= (player->y() - 45) &&
 				  list[i]->x() ) return true;
         }
         return false;

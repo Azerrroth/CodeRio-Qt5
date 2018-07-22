@@ -14,7 +14,7 @@ MyScene::MyScene()
     //vie = new view;
     //addItem(vie);
     //vie->setPos(0, 0);
-    timerId = startTimer(15);	//开启一个每隔15ms触发一次的计时器，timerId是该计时器的名称
+    timerId = startTimer(5);	//开启一个每隔15ms触发一次的计时器，timerId是该计时器的名称
     pos_x = 0;
     isMoving = false;
     control=new GameBoard;
@@ -190,6 +190,7 @@ void MyScene::keyPressEvent(QKeyEvent *event)
         if(event->key() == Qt::Key_D)
         {
             control->getMario()->setGoingRight(true);           //只需要在按下时候改变右走状态的布尔值，而判断碰撞物在moveMario里面
+
         }
         else if(event->key() == Qt::Key_A)
         {
