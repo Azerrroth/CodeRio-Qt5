@@ -241,17 +241,16 @@ void MyScene::keyReleaseEvent(QKeyEvent *event)
     {
         if(event->key() == Qt::Key_Space)           //留个空槽，这个暂时没用
         {
-
         }
         else if(event->key() == Qt::Key_A)          //松开a键传停止左走的信号
         {
             control->getMario()->setGoingLeft(false);
-            control->getMario()->setPixmap("Lstand.png");
+            //control->getMario()->setPixmap("Lstand.png");//松开A面朝左站立
         }
         else if(event->key() == Qt::Key_D)          //松开d键传停止右走的信号
         {
             control->getMario()->setGoingRight(false);
-            control->getMario()->setPixmap("Rstand.png");
+            //control->getMario()->setPixmap("Rstand.png");//松开D面朝右站立
         }
     }
     else if(control->getMario()->x() <= pos_x)
