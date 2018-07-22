@@ -86,13 +86,12 @@ void mario::setColor(const QColor &color)
 void mario::marioon_timer()
 {
     if(Walk.count()==0)
-    {qDebug()<<"is returned"<<endl;
+	{
         return;}
 
     static int Rgo=0,Lgo=2;
     if(isJumping)//先判断跳起状态
     {
-        qDebug()<<"is Jumping"<<endl;
         if(isGoingLeft)//向左跳
             m_pix_one=QPixmap("Ljump.png");
         else
