@@ -97,7 +97,7 @@ void GameBoard::moveMario()
 
     if(!player->getJumping() && !isDowncollider())
     {
-        player->moveBy(0,4);
+        player->moveBy(0,2);
         if(isDowncollider())
             player->setPixmap("Rstand.png");
 
@@ -106,12 +106,12 @@ void GameBoard::moveMario()
     if(player->getJumping() && !isUpcollider())
     {
         int temp = player->getJumpingTime();
-        if(temp < 60)
+        if(temp < 125)
         {
-            player->moveBy(0,-4);
+            player->moveBy(0,-2);
         }
         else {
-            player->moveBy(0,4);
+            player->moveBy(0,2);
         }
         player->setJumpingTime(temp+1);
 
@@ -127,8 +127,8 @@ void GameBoard::moveMario()
     else if(player->getJumping() && isUpcollider())
     {
         int temp = player->getJumpingTime();
-        player->setJumpingTime(120-temp);
-        player->moveBy(0,4);
+        player->setJumpingTime(250-temp);
+        player->moveBy(0,2);
     }
 }
 
