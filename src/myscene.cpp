@@ -54,12 +54,49 @@ void MyScene::removeCoins()
 	}
 }
 
+void MyScene::judgeQue()
+{
+	for(int i = 0; i < getControl()->getQue().size(); i++)
+	{
+		if(getControl()->getQue().at(i)->x() >= pos_x &&
+		   getControl()->getQue().at(i)->x() <= pos_x + 1450)
+		{
+			QList<QGraphicsItem*> list =
+					getControl()->getQue().at(i)->collidingItems();
+			if(!list.empty())
+			{
+				for(int j = 0; j < list.size(); j++)
+				{
+					if(QString(typeid(*list.at(j)).name()) == "5mario")
+					{
+						getControl()->getQue().at(i)->setHit(true);
+						//下边写相应操作
+
+						if(getControl()->getQue().at(i)->x() == 450 &&			//杨添凯的骚操作
+						   getControl()->getMario()->y() >=
+						   getControl()->getQue().at(i)->y())
+						{
+							stone* t1 = new stone;
+							stone* t2 = new stone;
+
+							this->addItem(t1);
+							this->addItem(t2);
+							t1->setPos(1100, 500);
+							t2->setPos(1150, 500);
+						}
+					}
+				}
+			}
+		}
+	}
+}
 
 void MyScene::refresh()
 {
     update();
     advance();
 	removeCoins();
+	judgeQue();
 }
 
 void MyScene::initialize()
@@ -69,7 +106,7 @@ void MyScene::initialize()
     getControl()->getBack()->setZValue(-100);
 
     addItem(getControl()->getMario());
-    getControl()->getMario()->setPos(100, 650);
+	getControl()->getMario()->setPos(450, 650);
 
 	addItem(getControl()->getFlag());
 	getControl()->getFlag()->setPos(21150, 150);
@@ -107,7 +144,7 @@ void MyScene::initialize()
 			monster* mon = new monster;
 			this->addItem(mon);
 			mon->setPos(x, y);
-			getControl()->getMonster().push_back(mon);
+			getControl()->pushMonster(mon);
         }
 
         else if(str.substr(0, 3) == "MUS")
@@ -115,14 +152,14 @@ void MyScene::initialize()
 			mushroom* mus = new mushroom;
 			this->addItem(mus);
 			mus->setPos(x, y);
-			getControl()->getMushroom().push_back(mus);
+			getControl()->pushMushroom(mus);
         }
 		else if(str.substr(0, 3) == "CLO")
         {
 			cloud* clo = new cloud;
 			this->addItem(clo);
 			clo->setPos(x, y);
-			getControl()->getCloud().push_back(clo);
+			getControl()->pushCloud(clo);
         }
 		else if(str.substr(0, 3) == "STO")
 		{
@@ -136,7 +173,7 @@ void MyScene::initialize()
 			questionMark* que = new questionMark;
 			this->addItem(que);
 			que->setPos(x, y);
-			getControl()->getQue().push_back(que);
+			getControl()->pushQue(que);
 		}
 		else if(str.substr(0, 3) == "BAS")
 		{

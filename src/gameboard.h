@@ -57,12 +57,18 @@ public:
 
     void moveView();	//该函数移动除了马里奥之外的内容，包括背景及障碍物
     void moveMario();	//该函数移动马里奥
-	void removeCoins();	//被玛丽奥碰撞时会被移除
+	void moveMonster();	//移动怪物
 
-	void pushCoins(coins* co) {coinlist.push_back(co);}
+	//以下的几个函数是为了在MyScene中初始化用的，直接用get函数不能push进去，必须重新实现一个push
+	void pushCoins(coins* coi) {coinlist.push_back(coi);}
+	void pushQue(questionMark* que) {quelist.push_back(que);}
+	void pushMushroom(mushroom* mos) {mushroomlist.push_back(mos);}
+	void pushCloud(cloud* clo) {cloudlist.push_back(clo);}
+	void pushMonster(monster* mon) {monsterlist.push_back(mon);}
 
+	//提供访问的接口
 	QList<blocks*> getBlocks() {return blocklist;}
-	vector<coins*> getCoins() {return coinlist;}
+	QList<coins*> getCoins() {return coinlist;}
 	QList<baseblock*> getBase() {return baslist;}
 	QList<questionMark*> getQue() {return quelist;}
 	QList<stone*> getStone() {return stonelist;}
@@ -79,6 +85,11 @@ public:
     bool isRightcollider();				//判断马里奥右边的碰撞物是否影响了马里奥前进
     bool isUpcollider();				//判断马里奥上边的碰撞物是否影响了马里奥前进
     bool isDowncollider();				//判断马里奥下边的碰撞物是否影响了马里奥前进
+	
+	//以下是怪物碰撞的判断，刚开始没想好，早知道里边应该加参数的。。。
+	bool monisLeft(monster* mon);
+	bool monisRight(monster* mon);
+	bool monisDown(monster* mon);
 
     colliderType colType();				//返回与马里奥碰撞体的类名的函数
 
@@ -90,7 +101,7 @@ private:
 	flag* fla;
 	//有一系列的障碍方块，故要用vector
 	QList<blocks*> blocklist;
-	vector<coins*> coinlist;
+	QList<coins*> coinlist;
 	QList<baseblock*> baslist;
 	QList<questionMark*> quelist;
 	QList<stone*> stonelist;

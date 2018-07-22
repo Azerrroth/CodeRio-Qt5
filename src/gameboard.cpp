@@ -18,10 +18,10 @@ GameBoard::GameBoard(QObject *parent) : QObject(parent)
     player = new mario();
     back = new background("background.png");
 	fla = new flag;
-    setItems("info.txt");
+//    setItems("info.txt");
 }
 
-void GameBoard::setItems(string file)
+/*void GameBoard::setItems(string file)
 {
     fstream in(file);
     string str;
@@ -227,4 +227,77 @@ bool GameBoard::isDowncollider()
         }
 		return false;
     }
+}
+
+bool GameBoard::monisLeft(monster* mon)
+{
+	QList<QGraphicsItem*> list = mon->collidingItems();
+	if(list.isEmpty()) return false;
+	else
+	{
+		for(int i = 0; i < list.size(); i++)
+		{
+			if(QString(typeid(*(list.at(i))).name()) != "6blocks" &&
+			   QString(typeid(*list.at(i)).name()) != "9baseblock" &&
+			   QString(typeid(*list.at(i)).name()) != "12questionMark" &&
+			   QString(typeid(*list.at(i)).name()) != "5stone" &&
+			   QString(typeid(*list.at(i)).name()) != "5cloud" &&
+			   QString(typeid(*list.at(i)).name()) != "4tube") continue;
+			if(list[i]->x() <= mon->x() &&
+			   list[i]->y() <= mon->y())
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+}
+
+bool GameBoard::monisRight(monster *mon)
+{
+	QList<QGraphicsItem*> list = mon->collidingItems();
+	if(list.isEmpty()) return false;
+	else
+	{
+		for(int i = 0; i < list.size(); i++)
+		{
+			if(QString(typeid(*(list.at(i))).name()) != "6blocks" &&
+			   QString(typeid(*list.at(i)).name()) != "9baseblock" &&
+			   QString(typeid(*list.at(i)).name()) != "12questionMark" &&
+			   QString(typeid(*list.at(i)).name()) != "5stone" &&
+			   QString(typeid(*list.at(i)).name()) != "5cloud" &&
+			   QString(typeid(*list.at(i)).name()) != "4tube") continue;
+			if(list[i]->x() >= mon->x() &&
+			   list[i]->y() <= mon->y())
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+}
+
+bool GameBoard::monisDown(monster *mon)
+{
+	QList<QGraphicsItem*> list = mon->collidingItems();			//是否这一行有问题？collidesItem()还是collidingItems()？
+	//回复楼上：的确有问题，少了个s
+	if(list.isEmpty()) return false;
+	else
+	{
+		for(int i = 0; i < list.size(); i++)
+		{
+			if(QString(typeid(*(list.at(i))).name()) != "6blocks" &&
+			   QString(typeid(*list.at(i)).name()) != "9baseblock" &&
+			   QString(typeid(*list.at(i)).name()) != "12questionMark" &&
+			   QString(typeid(*list.at(i)).name()) != "5stone" &&
+			   QString(typeid(*list.at(i)).name()) != "5cloud" &&
+			   QString(typeid(*list.at(i)).name()) != "4tube") continue;
+			if(list[i]->y() <= (mon->y() + 50) &&
+			   list[i]->y() >= (mon->y() + 48))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 }
