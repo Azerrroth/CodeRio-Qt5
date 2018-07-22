@@ -107,6 +107,7 @@ void MyScene::initialize()
 
     addItem(getControl()->getMario());
 	getControl()->getMario()->setPos(450, 650);
+	getControl()->getMario()->setZValue(50);
 
 	addItem(getControl()->getFlag());
 	getControl()->getFlag()->setPos(21150, 150);

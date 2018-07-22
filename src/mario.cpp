@@ -18,7 +18,7 @@ mario::mario(QGraphicsObject *parent)
 {
     qDebug() << "mario was created" << endl;
     setFlag(QGraphicsItem::ItemIsFocusable);
-    m_pix_one.load("Rstand.png");//初始状态是向右站着
+	m_pix_one.load("Rwalk1.png");//初始状态是向右站着
     coins = 0;
     life = 5;
     jumpingTime = 0;
