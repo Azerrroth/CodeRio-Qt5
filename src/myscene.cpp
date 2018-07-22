@@ -230,7 +230,7 @@ void MyScene::keyPressEvent(QKeyEvent *event)
         else if(event->key() == Qt::Key_Space)      //这个不能改变isJumping，否则会出现马里奥斜跳和场景移动同时出现的状况
                                                     //7.21 18：13分更新：或许可以使用isJumping，因为机制与预想的已经不同了
         {
-
+            control->getMario()->setJumping(true);
         }
     }
 }
@@ -283,7 +283,8 @@ void MyScene::keyReleaseEvent(QKeyEvent *event)
 void MyScene::timerEvent(QTimerEvent *event)                //timerevent改动到了这里
 {
     Q_UNUSED(event);
-    if(control->getMario()->x() <= 0) { control->getMario()->setGoingLeft(false); }
+    if(control->getMario()->x() <= pos_x) { control->getMario()->setGoingLeft(false); }
+    else if(control->getMario()->x() < pos_x + 500) { isMoving = false; }
     control->getBack()->update();
     control->moveMario();
     moveView();
