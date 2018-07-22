@@ -98,6 +98,9 @@ void GameBoard::moveMario()
     if(!player->getJumping() && !isDowncollider())
     {
         player->moveBy(0,1);
+        if(isDowncollider())
+            player->setPixmap("Rstand.png");
+
     }
 
     if(player->getJumping() && !isUpcollider())
@@ -116,6 +119,8 @@ void GameBoard::moveMario()
         {
             player->setJumping(false);
             player->setJumpingTime(0);
+            //落地变stand姿态
+            player->setPixmap("Rstand.png");
         }
 
     }
@@ -220,6 +225,7 @@ bool GameBoard::isDowncollider()
 			   list[i]->y() >= (player->y() + 48))
 			{
 				qDebug() << "DownTrue";
+
 				return true;
 			}
         }
