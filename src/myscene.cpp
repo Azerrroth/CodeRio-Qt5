@@ -38,7 +38,7 @@ void MyScene::removeCoins()
 					getControl()->getCoins().at(i)->collidingItems();
 			if(!list.isEmpty())
 			{
-                for(int j = 0; j < list.size(); j++)
+				for(int j = 0; j < list.size(); j++)
 				{
 					if(QString(typeid(*list.at(j)).name()) == "5mario")
 					{
