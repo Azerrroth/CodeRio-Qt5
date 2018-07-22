@@ -29,6 +29,7 @@ public:
     void keyReleaseEvent(QKeyEvent* event);
     GameBoard* getControl(){return control;}
     void moveView();
+	void removeCoins();
 
 private:
     void initialize();

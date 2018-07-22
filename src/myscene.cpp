@@ -27,10 +27,39 @@ MyScene::MyScene()
 
 }
 
+void MyScene::removeCoins()
+{
+	for(int i = 0; i < getControl()->getCoins().size(); i++)
+	{
+		if(getControl()->getCoins().at(i)->x() >= pos_x &&
+		   getControl()->getCoins().at(i)->x() <= pos_x + 1450)
+		{
+			QList<QGraphicsItem*> list =
+					getControl()->getCoins().at(i)->collidingItems();
+			if(!list.isEmpty())
+			{
+				for(int j = 0; j <= list.size(); j++)
+				{
+					if(QString(typeid(*list.at(j)).name()) == "5mario")
+					{
+						getControl()->getCoins().at(i)->remove();
+						getControl()->getCoins().at(i)->setExist();
+						getControl()->getMario()->addCoinNum();
+						qDebug() << getControl()->getMario()->getCoin();
+						break;
+					}
+				}
+			}
+		}
+	}
+}
+
+
 void MyScene::refresh()
 {
     update();
     advance();
+	removeCoins();
 }
 
 void MyScene::initialize()
@@ -71,7 +100,7 @@ void MyScene::initialize()
             coins* coi = new coins;
             this->addItem(coi);
             coi->setPos(x, y);
-            getControl()->getCoins().push_back(coi);
+			getControl()->pushCoins(coi);
         }
         else if(str.substr(0, 3) == "MON")
         {
@@ -216,7 +245,6 @@ void MyScene::keyPressEvent(QKeyEvent *event)
     }
     else if(control->getMario()->x() >= pos_x + 500)                                           //场景移动还未写
     {
-        qDebug() << "set";                      //调试信息
         if(event->key() == Qt::Key_D)
         {
             control->getMario()->setGoingRight(true);
@@ -263,7 +291,6 @@ void MyScene::keyReleaseEvent(QKeyEvent *event)
     }
     else if(control->getMario()->x() >= pos_x + 500)                                           //和移动场景相关的
     {
-        qDebug() << "unset";            //调试信息
         if(event->key() == Qt::Key_D)
         { 
             control->getMario()->setGoingRight(false);

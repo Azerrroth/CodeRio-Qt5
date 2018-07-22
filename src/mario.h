@@ -34,6 +34,9 @@ public:
     int getStart_y() { return start_y; }
     void setStart_y(int a) { start_y = a; }
     void setPixmap(QString a){m_pix_one.load(a);}
+
+	void addCoinNum() {coins+=1;}
+	const int getCoin() {return coins;}
 protected:
 
 

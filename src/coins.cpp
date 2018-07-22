@@ -31,6 +31,7 @@ coins::coins(QGraphicsObject *parent)
         qDebug()<<"no file was opened!!!"<<endl;
     }
     timer=new QTimer;
+	coinExist = true;
     connect(timer,SIGNAL(timeout()),this,SLOT(on_timer()));
     timer->start(100);
 
@@ -75,8 +76,10 @@ void coins::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
 QRectF coins::boundingRect() const
 {
     double penwidth = 1;
-    return QRect(0 - penwidth / 2, 0 - penwidth / 2,
-                 48 + penwidth, 48 + penwidth);
+	if(coinExist) return QRect(0 - penwidth / 2, 0 - penwidth / 2,
+							   48 + penwidth, 48 + penwidth);
+	else return QRect(0, 0, 0, 0);
+
 }
 
 

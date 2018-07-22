@@ -27,6 +27,8 @@
 #include <QString>
 #include <QList>
 #include <string>
+#include <vector>
+using std::vector;
 using std::string;
 
 //枚举类型，标志着碰撞体的类型
@@ -55,9 +57,12 @@ public:
 
     void moveView();	//该函数移动除了马里奥之外的内容，包括背景及障碍物
     void moveMario();	//该函数移动马里奥
+	void removeCoins();	//被玛丽奥碰撞时会被移除
+
+	void pushCoins(coins* co) {coinlist.push_back(co);}
 
 	QList<blocks*> getBlocks() {return blocklist;}
-	QList<coins*> getCoins() {return coinlist;}
+	vector<coins*> getCoins() {return coinlist;}
 	QList<baseblock*> getBase() {return baslist;}
 	QList<questionMark*> getQue() {return quelist;}
 	QList<stone*> getStone() {return stonelist;}
@@ -85,7 +90,7 @@ private:
 	flag* fla;
 	//有一系列的障碍方块，故要用vector
 	QList<blocks*> blocklist;
-	QList<coins*> coinlist;
+	vector<coins*> coinlist;
 	QList<baseblock*> baslist;
 	QList<questionMark*> quelist;
 	QList<stone*> stonelist;
