@@ -25,6 +25,7 @@ private:
     QStringList picList;//动画每张图片的列表
     QTimer *timer;//计时器
 	bool coinExist;
+    int cnt=0;
 
 private slots:
     void on_timer();//计时器触发的槽函数

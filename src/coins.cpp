@@ -44,13 +44,13 @@ coins::~coins()
 
 void coins::on_timer()//timer计时器出发的槽函数
 {
+
     if(picList.count()==0)
     {
         return;
     }
     if(!coinExist)
         remove();
-    static int cnt=0;
     m_pix_one=QPixmap(picList[cnt]);
     cnt++;
     update();
@@ -60,8 +60,9 @@ void coins::on_timer()//timer计时器出发的槽函数
 
 void coins::remove()//金币被吃以后消失
 {
-    m_pix_one=QPixmap("");
+    m_pix_one=QPixmap();
     update();
+    coinExist=false;
     timer->stop();
 }
 
