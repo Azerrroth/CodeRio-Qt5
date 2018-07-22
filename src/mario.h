@@ -7,12 +7,12 @@
 #ifndef GRAPHICSITEM_H
 #define GRAPHICSITEM_H
 #include <QGraphicsObject>
-#include <QPixmap>
 
 class mario: public QGraphicsObject
 {
+    Q_OBJECT
 public:
-    mario(const QString pix = "mario.png");
+    mario(QGraphicsObject *parent=nullptr);
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     void setColor(const QColor &color);
@@ -33,6 +33,7 @@ public:
 
     int getStart_y() { return start_y; }
     void setStart_y(int a) { start_y = a; }
+    void setPixmap(QString a){m_pix_one.load(a);}
 protected:
 
 
@@ -50,5 +51,12 @@ private:
 
     int jumpingTime;
     int start_y;
+
+    //下面是关于动画的
+    QStringList Walk;
+    QTimer *timer;//计时器
+
+private slots:
+    void marioon_timer();
 };
 #endif // GRAPHICSITEM_H

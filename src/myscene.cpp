@@ -246,10 +246,12 @@ void MyScene::keyReleaseEvent(QKeyEvent *event)
         else if(event->key() == Qt::Key_A)          //松开a键传停止左走的信号
         {
             control->getMario()->setGoingLeft(false);
+            control->getMario()->setPixmap("Lstand.png");
         }
         else if(event->key() == Qt::Key_D)          //松开d键传停止右走的信号
         {
             control->getMario()->setGoingRight(false);
+            control->getMario()->setPixmap("Rstand.png");
         }
     }
     else if(control->getMario()->x() <= pos_x)

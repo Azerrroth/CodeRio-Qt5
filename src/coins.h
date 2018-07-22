@@ -1,7 +1,6 @@
 #ifndef COINS_H
 #define COINS_H
 #include <QGraphicsObject>
-#include <QLabel>
 
 class coins : public QGraphicsObject
 {
