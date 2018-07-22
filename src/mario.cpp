@@ -15,9 +15,7 @@ mario::mario(const QString pix_one)
     m_pix_one.load(pix_one);
     coins = 0;
     life = 5;
-    x_Relative = -100;
-    y_Relative = 0;
-    start_x = 0;
+    jumpingTime = 0;
     start_y = 0;
     isJumping = false;
     isGoingLeft = false;

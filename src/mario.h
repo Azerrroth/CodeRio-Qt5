@@ -28,18 +28,11 @@ public:
     void setGoingRight(bool a) { isGoingRight = a; }    //给gameboard中的moveMario提供一个接口，改变isGoingRight的值
     void setJumping(bool a) { isJumping = a; }          //给gameboard中的moveMario提供一个接口，改变isJumping的值
 
-    void set_start_x(int a) { start_x = a;}             //从这往下到get_y_Relative()都是跳跃相关数值获取和设定
-    void set_start_y(int a) { start_y = a;}
+    int getJumpingTime(){ return jumpingTime; }
+    void setJumpingTime(int a) { jumpingTime = a; }
 
-    int get_start_x() { return start_x; }
-    int get_start_y() { return start_y; }
-
-    void set_x_Relative(float a) { x_Relative = a; }
-    void set_y_Relative(int a) { y_Relative = a; }
-
-    float get_x_Relative() { return x_Relative; }
-    int get_y_Relative() { return y_Relative; }
-
+    int getStart_y() { return start_y; }
+    void setStart_y(int a) { start_y = a; }
 protected:
 
 
@@ -55,10 +48,7 @@ private:
     bool isGoingLeft;           //判断是否往左
     bool isGoingRight;          //判断是否往右
 
-    int start_x;                //以下四个变量都是跳跃相关变量
+    int jumpingTime;
     int start_y;
-    float x_Relative;
-    int y_Relative;
-
 };
 #endif // GRAPHICSITEM_H
