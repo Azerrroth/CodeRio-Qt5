@@ -2,9 +2,7 @@
 #include <QGraphicsScene>
 #include <QKeyEvent>
 #include <QGraphicsView>
-#include <QPixmap>
 #include <iostream>
-#include <QCoreApplication>
 #include <QTime>
 #include <QDebug>
 #include <QFile>
