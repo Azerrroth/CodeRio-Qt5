@@ -95,6 +95,11 @@ void GameBoard::moveMario()
         player->moveBy(1,0);
     }
 
+    if(!player->getJumping() && !isDowncollider())
+    {
+        player->moveBy(0,1);
+    }
+
     if(player->getJumping() && !isUpcollider())
     {
         int temp = player->getJumpingTime();
