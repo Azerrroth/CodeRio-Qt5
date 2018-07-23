@@ -362,12 +362,15 @@ void MyScene::moveView()                                    //场景移动相关
     if(isMoving)
     {
         //qDebug() << "moveView";                             //调试信息
-        pos_x += 1;
-        setSceneRect(pos_x,0,1450,800);
-        int temp = pos_x;
-        if(temp < 20300)
-            control->getBack()->setX(temp);//到图的右边缘就不再动了
-        control->getBack()->setPos(temp,0);
+        if(pos_x<20300)
+
+        {
+            pos_x += 1;
+            setSceneRect(pos_x,0,1450,800);
+            int temp = pos_x;
+            control->getBack()->setX(pos_x);//到图的右边缘就不再动了
+            control->getBack()->setPos(temp,0);
+        }
 
         control->getBack()->update();
         //调用update()的时候会自动调用paint函数，所以给paint里drawpixmap的横坐标改成参数x
