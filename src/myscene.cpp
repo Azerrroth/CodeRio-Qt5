@@ -383,7 +383,7 @@ void MyScene::moveMonster()
     int num = control->getMonster().size();
     for(int i = 0;i < num;i++)
     {
-        qDebug() << "first working" << pos_x << control->getMonster().at(i)->x();
+        //qDebug() << "first working" << pos_x << control->getMonster().at(i)->x();
 
         if(control->getMonster().at(i)->x() < pos_x)
         {
@@ -394,7 +394,7 @@ void MyScene::moveMonster()
             continue;
         }
 
-        qDebug() << "work";
+        //qDebug() << "work";
 
         if(control->monisLeft(control->getMonster().at(i)))
         {
@@ -412,12 +412,12 @@ void MyScene::moveMonster()
 
         if(left == true && right == false)
         {
-            qDebug() << left << right << control->getMonster().at(i)->x();
+            //qDebug() << left << right << control->getMonster().at(i)->x();
             control->getMonster().at(i)->moveBy(-1,0);
         }
         else if(left == false && right == true)
         {
-            qDebug() << left << right << control->getMonster().at(i)->x();
+            //qDebug() << left << right << control->getMonster().at(i)->x();
             control->getMonster().at(i)->moveBy(1,0);
         }
 
