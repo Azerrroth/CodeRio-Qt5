@@ -97,6 +97,11 @@ void mario::marioon_timer()
         else
             m_pix_one=QPixmap("Rjump.png");
     }
+    if(tempX==x()&&tempY==y())
+        m_pix_one=QPixmap("Rstand.png");
+
+    tempX=x();
+    tempY=y();
 
     if(isGoingLeft&&!isGoingRight&&!isJumping)
     {

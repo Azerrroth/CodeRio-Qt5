@@ -58,6 +58,7 @@ private:
     //下面是关于动画的
     QStringList Walk;
     QTimer *timer;//计时器
+    qreal tempX,tempY;
 
 private slots:
     void marioon_timer();
