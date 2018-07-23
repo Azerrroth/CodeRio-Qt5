@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
-
+QT       += multimedia
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = mario
@@ -41,7 +41,8 @@ SOURCES += \
     stone.cpp \
     tube.cpp \
     flower.cpp \
-    flag.cpp
+    flag.cpp \
+    sound.cpp
 
 HEADERS += \
     blocks.h \
@@ -60,7 +61,8 @@ HEADERS += \
     stone.h \
     tube.h \
     flower.h \
-    flag.h
+    flag.h \
+    sound.h
 
 FORMS += \
         mainwindow.ui
