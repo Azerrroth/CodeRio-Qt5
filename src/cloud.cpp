@@ -11,7 +11,7 @@ cloud::cloud()
 QRectF cloud::boundingRect() const {
 	double penwidth = 1;
 	return QRect(0 - penwidth / 2, 0 - penwidth / 2,
-				 149 + penwidth, 49 + penwidth);
+				 199 + penwidth, 49 + penwidth);
 }
 
 void cloud::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
