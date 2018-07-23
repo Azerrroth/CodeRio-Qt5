@@ -12,6 +12,11 @@ using std::string;
 
 MyScene::MyScene()
 {
+//    QPushButton* item=new QPushButton;
+//    item->setText("This is just a test Button");
+//    item->setGeometry(50,50,100,50);
+//    item->show();
+
     //vie = new view;
     //addItem(vie);
     //vie->setPos(0, 0);

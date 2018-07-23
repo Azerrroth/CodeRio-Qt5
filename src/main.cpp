@@ -44,8 +44,7 @@ int main(int argc, char *argv[])
     QGraphicsView v(&scene);
 
     v.setWindowTitle("motherfucker");
-
-    v.resize(1455,805);
+    v.setFixedSize(1452,802);
     v.show();
 
     return a.exec();
