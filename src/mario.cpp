@@ -25,7 +25,7 @@ mario::mario(QGraphicsObject *parent)
     start_y = 0;
     isJumping = false;
     isGoingLeft = false;
-    isGoingRight = false;
+	isGoingRight = false;
 	isDie = false;
 
 

@@ -65,6 +65,7 @@ public:
 	void pushMushroom(mushroom* mos) {mushroomlist.push_back(mos);}
 	void pushCloud(cloud* clo) {cloudlist.push_back(clo);}
 	void pushMonster(monster* mon) {monsterlist.push_back(mon);}
+	void pushFlower(flower* flo) {flowerlist.push_back(flo);}
 
 	//提供访问的接口
 	QList<blocks*> getBlocks() {return blocklist;}

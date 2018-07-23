@@ -239,7 +239,7 @@ void MyScene::initialize()
 			flower* flo = new flower;
 			this->addItem(flo);
 			flo->setPos(x, y);
-			getControl()->getFlower().push_back(flo);
+			getControl()->pushFlower(flo);
 		}
 		else if(str.substr(0, 3) == "FLA")
 		{
