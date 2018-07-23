@@ -26,6 +26,7 @@ mario::mario(QGraphicsObject *parent)
     isJumping = false;
     isGoingLeft = false;
     isGoingRight = false;
+	isDie = false;
 
 
     //下面是动画内容
