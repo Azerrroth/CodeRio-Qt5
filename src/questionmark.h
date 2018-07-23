@@ -12,6 +12,8 @@ public:
 	void setColor(const QColor &color);
 	bool getHit() {return isHitted;}
 	void setHit(bool bo) {isHitted = bo;}
+
+	void change();
 private:
 	QPixmap m_pix_one;
 	bool isHitted;		//是否被玛丽奥碰撞

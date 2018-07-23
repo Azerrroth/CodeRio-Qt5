@@ -15,6 +15,12 @@ QRectF questionMark::boundingRect() const {
 				 49 + penwidth, 49 + penwidth);
 }
 
+void questionMark::change()
+{
+	m_pix_one.load("queblock1.png");
+	update();
+}
+
 void questionMark::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
 	Q_UNUSED(option);
 	Q_UNUSED(widget);

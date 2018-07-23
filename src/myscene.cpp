@@ -15,11 +15,11 @@ MyScene::MyScene()
     //addItem(vie);
     //vie->setPos(0, 0);
     timerId = startTimer(5);	//开启一个每隔15ms触发一次的计时器，timerId是该计时器的名称
-    pos_x = 0;
+	pos_x = 0;
     isMoving = false;
     control=new GameBoard;
     initialize();
-    setSceneRect(0, 0, 1450, 800);
+	setSceneRect(0, 0, 1450, 800);
 
     timer = new QTimer;
     connect(timer,SIGNAL(timeout()),this,SLOT(refresh()));
@@ -45,7 +45,6 @@ void MyScene::removeCoins()
 						getControl()->getCoins().at(i)->remove();
 						getControl()->getCoins().at(i)->setExist();
 						getControl()->getMario()->addCoinNum();
-						qDebug() << getControl()->getMario()->getCoin();
 						break;
 					}
 				}
@@ -67,22 +66,169 @@ void MyScene::judgeQue()
 			{
 				for(int j = 0; j < list.size(); j++)
 				{
-					if(QString(typeid(*list.at(j)).name()) == "5mario")
+					if(getControl()->getQue().at(i)->getHit()) continue;
+					if(QString(typeid(*list.at(j)).name()) == "5mario" &&
+					   getControl()->getMario()->y() ==
+					   getControl()->getQue().at(i)->y() + 50)
 					{
-						getControl()->getQue().at(i)->setHit(true);
-						//下边写相应操作
+						getControl()->getQue().at(i)->change();
+						if(!getControl()->getQue().at(i)->getHit())
+						{
+							getControl()->getMario()->addCoinNum();//addCoinNubmer
+							getControl()->getQue().at(i)->setHit(true);
+							//下边写相应操作
+						}
 
 						if(getControl()->getQue().at(i)->x() == 450 &&			//杨添凯的骚操作
-						   getControl()->getMario()->y() >=
-						   getControl()->getQue().at(i)->y())
+						   getControl()->getMario()->y() ==
+						   getControl()->getQue().at(i)->y() + 50)
 						{
 							stone* t1 = new stone;
 							stone* t2 = new stone;
+							stone* t3 = new stone;
+							stone* t4 = new stone;
 
 							this->addItem(t1);
 							this->addItem(t2);
+							this->addItem(t3);
+							this->addItem(t4);
 							t1->setPos(1100, 500);
 							t2->setPos(1150, 500);
+							t3->setPos(500, 500);
+							t4->setPos(550, 500);
+						}
+						else if(getControl()->getQue().at(i)->x() == 3100 &&
+								getControl()->getMario()->y() >=
+								getControl()->getQue().at(i)->y() + 50)
+						{
+							monster* t1 = new monster;
+							monster* t2 = new monster;
+							this->addItem(t1);
+							this->addItem(t2);
+							t1->setPos(3045, 555);
+							t2->setPos(3155, 555);
+							getControl()->pushMonster(t1);
+							getControl()->pushMonster(t2);
+						}
+						else if(getControl()->getQue().at(i)->x() == 5500 &&
+								getControl()->getMario()->y() >=
+								getControl()->getQue().at(i)->y() + 50)
+						{
+							monster* t1 = new monster;
+							this->addItem(t1);
+							t1->setPos(5500, 550);
+							getControl()->pushMonster(t1);
+						}
+						else if(getControl()->getQue().at(i)->x() == 5650 &&
+								getControl()->getMario()->y() >=
+								getControl()->getQue().at(i)->y() + 50)
+						{
+							monster* t1 = new monster;
+							this->addItem(t1);
+							t1->setPos(5650, 550);
+							getControl()->pushMonster(t1);
+						}
+						else if(getControl()->getQue().at(i)->x() == 5550 &&
+								getControl()->getMario()->y() >=
+								getControl()->getQue().at(i)->y() + 50)
+						{
+							monster* t1 = new monster;
+							this ->addItem(t1);
+							t1->setPos(5550, 350);
+						}
+						else if(getControl()->getQue().at(i)->x() == 5600 &&
+								getControl()->getMario()->y() >=
+								getControl()->getQue().at(i)->y() + 50)
+						{
+							monster* t1 = new monster;
+							this->addItem(t1);
+							t1->setPos(5600, 350);
+							getControl()->pushMonster(t1);
+						}
+						else if(getControl()->getQue().at(i)->x() == 6200 &&
+								getControl()->getMario()->y() >=
+								getControl()->getQue().at(i)->y() + 50)
+						{
+							monster* t1 = new monster;
+							this->addItem(t1);
+							t1->setPos(6150, 550);
+							getControl()->pushMonster(t1);
+						}
+						else if(getControl()->getQue().at(i)->x() == 6300 &&
+								getControl()->getMario()->y() >=
+								getControl()->getQue().at(i)->y() + 50)
+						{
+							stone* t1 = new stone;
+							this->addItem(t1);
+							t1->setPos(6350, 500);
+							stone* t2 = new stone;
+							this->addItem(t2);
+							t2->setPos(6400, 500);
+							stone* t3 = new stone;
+							this->addItem(t3);
+							t3->setPos(6450, 500);
+							stone* t4 = new stone;
+							this->addItem(t4);
+							t4->setPos(6350, 500);
+						}
+						else if(getControl()->getQue().at(i)->x() == 6650 &&
+								getControl()->getMario()->y() >=
+								getControl()->getQue().at(i)->y() + 50)
+						{
+							monster* t1 = new monster;
+							monster* t2 = new monster;
+							this->addItem(t1);
+							this->addItem(t2);
+							t1->setPos(6600, 550);
+							t2->setPos(6700, 550);
+							getControl()->pushMonster(t1);
+							getControl()->pushMonster(t2);
+						}
+						else if(getControl()->getQue().at(i)->x() == 12600 &&
+								getControl()->getMario()->y() >=
+								getControl()->getQue().at(i)->y() + 50)
+						{
+							fstream in("special.txt");
+							string str;
+							while (getline(in, str))
+							{
+								int x = atoi(const_cast<char*>(str.substr(3, 5).c_str()));
+								int y = atoi(const_cast<char*>(str.substr(8, 3).c_str()));
+								blocks* blo = new blocks;
+								this->addItem(blo);
+								blo->setPos(x, y);
+							}
+						}
+						else if(getControl()->getQue().at(i)->x() == 12400 &&
+								getControl()->getMario()->y() >=
+								getControl()->getQue().at(i)->y() + 50)
+						{
+							stone* t1 = new stone;
+							this->addItem(t1);
+							t1->setPos(12450, 500);
+						}
+						else if(getControl()->getQue().at(i)->x() == 12900 &&
+								getControl()->getMario()->y() >=
+								getControl()->getQue().at(i)->y() + 50)
+						{
+							stone* t1 = new stone;
+							stone* t2 = new stone;
+							stone* t3 = new stone;
+							stone* t4 = new stone;
+							stone* t5 = new stone;
+							stone* t6 = new stone;
+							this->addItem(t1);
+							this->addItem(t2);
+							this->addItem(t3);
+							this->addItem(t4);
+							this->addItem(t5);
+							this->addItem(t6);
+							t1->setPos(12800, 350);
+							t2->setPos(12800, 400);
+							t3->setPos(12800, 450);
+							t4->setPos(13000, 350);
+							t5->setPos(13000, 400);
+							t6->setPos(13000, 450);
 						}
 					}
 				}
@@ -106,7 +252,7 @@ void MyScene::initialize()
     getControl()->getBack()->setZValue(-100);
 
     addItem(getControl()->getMario());
-	getControl()->getMario()->setPos(450, 650);
+	getControl()->getMario()->setPos(200, 600);
 	getControl()->getMario()->setZValue(50);
 
 	addItem(getControl()->getFlag());
