@@ -10,7 +10,14 @@ class Sound: public QThread
 {
     Q_OBJECT
 public:
-    Sound();
+    Sound(QString s);
+    void run();
+    QMediaPlayer *player;
+
+private:
+    QString address;
+
+
 };
 
 #endif // SOUND_H
