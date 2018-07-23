@@ -355,6 +355,7 @@ void MyScene::timerEvent(QTimerEvent *event)                //timerevent改动�
     control->moveMario();
     moveMonster();
     moveView();
+    moveFlower();
 }
 
 void MyScene::moveView()                                    //场景移动相关函数
@@ -429,3 +430,43 @@ void MyScene::moveMonster()
     }
 }
 
+void MyScene::moveFlower()
+{
+    int num = control->getFlower().size();
+    for(int i = 0;i < num;i++)
+    {
+        if(control->getFlower().at(i)->x() < pos_x && control->getFlower().at(i)->x() > pos_x +1450)
+            continue;
+
+        if(control->getFlower().at(i)->getTime() > 0 && control->getFlower().at(i)->getTime() < 200)
+        {
+            control->getFlower().at(i)->moveBy(0,0.2);
+            control->getFlower().at(i)->setTime(control->getFlower().at(i)->getTime() + 1);
+        }
+        else if(control->getFlower().at(i)->getTime() == 200)
+        {
+            control->getFlower().at(i)->moveBy(0,1000);
+            control->getFlower().at(i)->setTime(control->getFlower().at(i)->getTime() + 1);
+        }
+        else if(control->getFlower().at(i)->getTime() == 1200)
+        {
+            control->getFlower().at(i)->moveBy(0,-1000);
+            control->getFlower().at(i)->setTime(control->getFlower().at(i)->getTime() + 1);
+        }
+        else if(control->getFlower().at(i)->getTime() > 1200 && control->getFlower().at(i)->getTime() < 1400)
+        {
+            control->getFlower().at(i)->moveBy(0,-0.2);
+            control->getFlower().at(i)->setTime(control->getFlower().at(i)->getTime() + 1);
+        }
+        else if(control->getFlower().at(i)->getTime() == 2000)
+        {
+            control->getFlower().at(i)->setTime(1);
+        }
+        else
+        {
+            control->getFlower().at(i)->setTime(control->getFlower().at(i)->getTime() + 1);
+        }
+
+        qDebug() << control->getFlower().at(i)->y() << i;
+    }
+}

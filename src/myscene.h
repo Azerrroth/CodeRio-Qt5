@@ -31,6 +31,7 @@ public:
 
     void moveView();
     void moveMonster();	//移动怪物
+    void moveFlower();
 
 	void removeCoins();				//判断金币是否被碰撞的函数，若被玛丽奥碰撞则移除金币
 	void judgeQue();				//判断问号方块是否被玛丽奥碰撞

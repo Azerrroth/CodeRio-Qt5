@@ -6,6 +6,7 @@
 flower::flower()
 {
 	m_pix_one.load("flower.png");
+    time = 0;
 }
 
 QRectF flower::boundingRect() const {
