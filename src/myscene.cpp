@@ -353,6 +353,7 @@ void MyScene::timerEvent(QTimerEvent *event)                //timerevent改动�
     else if(control->getMario()->x() < pos_x + 500) { isMoving = false; }
     control->getBack()->update();
     control->moveMario();
+    moveMonster();
     moveView();
 }
 
@@ -373,3 +374,55 @@ void MyScene::moveView()                                    //场景移动相关
         //修改x的值，让背景图片paint起点在负方向，就实现北京移动了
     }
 }
+
+void MyScene::moveMonster()
+{
+    int num = control->getMonster().size();
+    for(int i = 0;i < num;i++)
+    {
+        qDebug() << "first working" << pos_x << control->getMonster().at(i)->x();
+
+        if(control->getMonster().at(i)->x() < pos_x)
+        {
+            continue;
+        }
+        else if(control->getMonster().at(i)->x() > pos_x+1450)
+        {
+            continue;
+        }
+
+        qDebug() << "work";
+
+        if(control->monisLeft(control->getMonster().at(i)))
+        {
+            control->getMonster().at(i)->setGoingLeft(false);
+            control->getMonster().at(i)->setGoingRight(true);
+        }
+        if(control->monisRight(control->getMonster().at(i)))
+        {
+            control->getMonster().at(i)->setGoingLeft(true);
+            control->getMonster().at(i)->setGoingRight(false);
+        }
+
+        bool left = control->getMonster().at(i)->getGoingLeft();
+        bool right = control->getMonster().at(i)->getGoingRight();
+
+        if(left == true && right == false)
+        {
+            qDebug() << left << right << control->getMonster().at(i)->x();
+            control->getMonster().at(i)->moveBy(-1,0);
+        }
+        else if(left == false && right == true)
+        {
+            qDebug() << left << right << control->getMonster().at(i)->x();
+            control->getMonster().at(i)->moveBy(1,0);
+        }
+
+        if(!control->monisDown(control->getMonster().at(i)))
+        {
+            control->getMonster().at(i)->moveBy(0,2);
+        }
+
+    }
+}
+

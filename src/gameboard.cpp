@@ -301,3 +301,4 @@ bool GameBoard::monisDown(monster *mon)
 		return false;
 	}
 }
+

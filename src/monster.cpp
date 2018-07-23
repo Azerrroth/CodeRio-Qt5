@@ -6,6 +6,8 @@
 monster::monster()
 {
 	m_pix_one.load("monster.png");
+    isGoingLeft = true;
+    isGoingRight = false;
 }
 
 QRectF monster::boundingRect() const {

@@ -28,7 +28,10 @@ public:
     void keyPressEvent(QKeyEvent* event);
     void keyReleaseEvent(QKeyEvent* event);
     GameBoard* getControl(){return control;}
+
     void moveView();
+    void moveMonster();	//移动怪物
+
 	void removeCoins();				//判断金币是否被碰撞的函数，若被玛丽奥碰撞则移除金币
 	void judgeQue();				//判断问号方块是否被玛丽奥碰撞
 
