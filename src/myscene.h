@@ -51,7 +51,7 @@ private:
 
     int pos_x;                      //判断移动的参数
     bool isMoving;
-
+    Sound* jumpSound,*BGM;
 
 };
 

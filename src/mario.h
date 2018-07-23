@@ -7,7 +7,7 @@
 #ifndef GRAPHICSITEM_H
 #define GRAPHICSITEM_H
 #include <QGraphicsObject>
-
+#include <sound.h>
 class mario: public QGraphicsObject
 {
     Q_OBJECT
@@ -35,7 +35,7 @@ public:
     void setStart_y(int a) { start_y = a; }
     void setPixmap(QString a){m_pix_one.load(a);}
 
-	void addCoinNum() {coins+=1;}
+    void addCoinNum() {coins+=1;emit haveCoin();}
 	const int getCoin() {return coins;}
 
 	bool getDie() {return isDie;}
@@ -64,7 +64,20 @@ private:
     QTimer *timer;//计时器
     qreal tempX,tempY;
 
+    //下面是音效的
+    Sound *coin,*temp[15];
+    int countPoint=0;
+    //static int tempCoins;
+    QTimer *timerSound;
+
+
 private slots:
-    void marioon_timer();
+    void mario_timer();
+    void coinSound();
+    void mario_sound();
+
+signals:
+    void haveCoin();
+
 };
 #endif // GRAPHICSITEM_H

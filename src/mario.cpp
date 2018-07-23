@@ -12,7 +12,6 @@
 #include <QTextCodec>
 #include <QtGui>
 
-
 mario::mario(QGraphicsObject *parent)
     :QGraphicsObject (parent)
 {
@@ -46,10 +45,15 @@ mario::mario(QGraphicsObject *parent)
         qDebug()<<"no file was opened!!!"<<endl;
     }
 
-
+    connect(this,SIGNAL(haveCoin()),this,SLOT(coinSound()));
     timer=new QTimer;
-    connect(timer,SIGNAL(timeout()),this,SLOT(marioon_timer()));
-	timer->start(110);
+    connect(timer,SIGNAL(timeout()),this,SLOT(mario_timer()));
+    timer->start(110);
+
+    timerSound=new QTimer;
+    connect(timerSound,SIGNAL(timeout()),this,SLOT(mario_sound()));
+    timerSound->start(5000);
+
 
 }
 
@@ -84,7 +88,7 @@ void mario::setColor(const QColor &color)
 //下面是动画部分---------------------
 
 
-void mario::marioon_timer()
+void mario::mario_timer()
 {
     if(Walk.count()==0)
 	{
@@ -121,4 +125,26 @@ void mario::marioon_timer()
         Rgo=0;
         Lgo=2;
     }
+
+
+}
+
+
+//下面是音效部分
+void mario::coinSound()
+{
+    coin=new Sound("getCoin.mp3");
+    temp[countPoint]=coin;
+    countPoint++;
+}
+
+void mario::mario_sound()
+{
+    if(countPoint)
+    {
+        for(int i=countPoint;i<countPoint;i++)
+            delete temp[i];
+        countPoint=0;
+    }
+
 }

@@ -1,6 +1,7 @@
 #include "myscene.h"
 #include "view.h"
 #include "flag.h"
+#include "sound.h"
 #include <fstream>
 #include <string>
 #include <algorithm>
@@ -247,6 +248,8 @@ void MyScene::refresh()
 
 void MyScene::initialize()
 {
+    BGM=new Sound("StartBGM.mp3");
+    BGM->player->setVolume(20);
     addItem(getControl()->getBack());
     getControl()->getBack()->setPos(0, 0);
     getControl()->getBack()->setZValue(-100);
@@ -385,6 +388,7 @@ void MyScene::initialize()
 			flower* flo = new flower;
 			this->addItem(flo);
 			flo->setPos(x, y);
+            flo->setZValue(-49);
 			getControl()->pushFlower(flo);
 		}
 		else if(str.substr(0, 3) == "FLA")
@@ -416,6 +420,8 @@ void MyScene::keyPressEvent(QKeyEvent *event)
         {
             if(control->isDowncollider())           //在下方有东西的时候才能跳
             {
+                delete jumpSound;
+                jumpSound=new Sound("Jump.wav");
                 control->getMario()->setJumping(true);
             }
         }
@@ -442,7 +448,13 @@ void MyScene::keyPressEvent(QKeyEvent *event)
         else if(event->key() == Qt::Key_Space)      //这个不能改变isJumping，否则会出现马里奥斜跳和场景移动同时出现的状况
                                                     //7.21 18：13分更新：或许可以使用isJumping，因为机制与预想的已经不同了
         {
-            control->getMario()->setJumping(true);
+            if(control->isDowncollider())           //在下方有东西的时候才能跳
+            {
+                delete jumpSound;
+                jumpSound=new Sound("Jump.wav");
+                //connect(jumpSound,&Sound::finished, jumpSound, &QObject::deleteLater);
+                control->getMario()->setJumping(true);
+            }
         }
     }
 }

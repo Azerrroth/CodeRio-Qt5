@@ -11,7 +11,8 @@ class Sound: public QThread
     Q_OBJECT
 public:
     Sound(QString s);
-    void run();
+    ~Sound();
+    void ppplay();
     QMediaPlayer *player;
 
 private:
