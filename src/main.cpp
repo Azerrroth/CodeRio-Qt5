@@ -45,6 +45,7 @@ int main(int argc, char *argv[])
 
     v.setWindowTitle("motherfucker");
     v.setFixedSize(1452,802);
+    v.setWindowFlags(Qt::FramelessWindowHint);
     v.show();
 
     return a.exec();
