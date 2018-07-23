@@ -26,6 +26,7 @@ mario::mario(QGraphicsObject *parent)
     isJumping = false;
     isGoingLeft = false;
     isGoingRight = false;
+	isDie = false;
 
 
     //下面是动画内容
@@ -48,7 +49,7 @@ mario::mario(QGraphicsObject *parent)
 
     timer=new QTimer;
     connect(timer,SIGNAL(timeout()),this,SLOT(marioon_timer()));
-    timer->start(150);
+	timer->start(110);
 
 }
 
@@ -115,7 +116,7 @@ void mario::marioon_timer()
     }
 
         update();
-    if(Rgo>=2||Lgo>=4)
+	if(Rgo>=4||Lgo>=4)
     {
         Rgo=0;
         Lgo=2;

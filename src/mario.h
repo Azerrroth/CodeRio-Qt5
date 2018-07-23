@@ -17,7 +17,7 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     void setColor(const QColor &color);
 
-    void move();                            //在类外因为不能访问private，故用一个公有的move()函数来调用moveBy()，实现在类外部移
+	void move();								//在类外因为不能访问private，故用一个公有的move()函数来调用moveBy()，实现在类外部移
     void setMove(qreal x, qreal y);             //设置位移的值
 
     bool getGoingLeft() { return isGoingLeft; }         //给gameboard中的moveMario提供一个接口，判断是否发出往左的指令
@@ -37,6 +37,9 @@ public:
 
 	void addCoinNum() {coins+=1;}
 	const int getCoin() {return coins;}
+
+	bool getDie() {return isDie;}
+	void setDie(bool bo) {isDie = bo;}
 protected:
 
 
@@ -51,6 +54,7 @@ private:
     bool isJumping;             //判断是否跳起的状态
     bool isGoingLeft;           //判断是否往左
     bool isGoingRight;          //判断是否往右
+	bool isDie;
 
     int jumpingTime;
     int start_y;
