@@ -43,7 +43,6 @@ int main(int argc, char *argv[])
     MyScene scene;
     QGraphicsView v(&scene);
 
-    v.setWindowTitle("motherfucker");
     v.setFixedSize(1452,802);
     v.setWindowFlags(Qt::FramelessWindowHint);
     v.show();

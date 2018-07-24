@@ -36,7 +36,8 @@ bool GlobalApplication::notify(QObject *obj, QEvent *e)
     else if(e->type() == QEvent::MouseButtonPress)
     {
         QMouseEvent *mouseEvent = static_cast<QMouseEvent *>(e);
-        //if(mouseEvent->buttons() == Qt::LeftButton)
+        if(mouseEvent->buttons() == Qt::LeftButton)
+            QDBG<< clName;
         //QDBG << "left";
     }
     return QApplication::notify(obj,e);

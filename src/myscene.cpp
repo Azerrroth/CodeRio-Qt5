@@ -19,10 +19,6 @@ MyScene::MyScene()
     //vie = new view;
     //addItem(vie);
     //vie->setPos(0, 0);
-    timerId = startTimer(5);	//开启一个每隔15ms触发一次的计时器，timerId是该计时器的名称
-	pos_x = 0;
-    isMoving = false;
-    control=new GameBoard;
     initialize();
 	setSceneRect(0, 0, 1450, 800);
 
@@ -280,6 +276,15 @@ void MyScene::refresh()
 
 void MyScene::initialize()
 {
+    timerId = startTimer(5);	//开启一个每隔15ms触发一次的计时器，timerId是该计时器的名称
+    pos_x = 0;
+    isMoving = false;
+    control=new GameBoard;
+
+    timer = new QTimer;
+    connect(timer,SIGNAL(timeout()),this,SLOT(refresh()));
+    timer->start(3);
+
     BGM=new Sound("StartBGM.mp3");
     BGM->player->setVolume(20);
     addItem(getControl()->getBack());
@@ -496,10 +501,10 @@ void MyScene::keyReleaseEvent(QKeyEvent *event)
 {
     if(control->getMario()->x() > pos_x && control->getMario()->x() < pos_x + 500)
     {
-        if(event->key() == Qt::Key_Space)           //留个空槽，这个暂时没用
-        {
-        }
-        else if(event->key() == Qt::Key_A)          //松开a键传停止左走的信号
+//        if(event->key() == Qt::Key_Space)           //留个空槽，这个暂时没用
+//        {
+//        }
+        if(event->key() == Qt::Key_A)          //松开a键传停止左走的信号
         {
             control->getMario()->setGoingLeft(false);
             //control->getMario()->setPixmap("Lstand.png");//松开A面朝左站立
@@ -529,11 +534,11 @@ void MyScene::keyReleaseEvent(QKeyEvent *event)
             control->getMario()->setGoingLeft(false);
             isMoving = false;
         }
-        else if(event->key() == Qt::Key_Space)      //这个不能改变isJumping，否则会出现马里奥斜跳和场景移动同时出现的状况
-                                                    //7.21 18：13分更新：或许可以使用isJumping，因为机制与预想的已经不同了
-        {
+//        else if(event->key() == Qt::Key_Space)      //这个不能改变isJumping，否则会出现马里奥斜跳和场景移动同时出现的状况
+//                                                    //7.21 18：13分更新：或许可以使用isJumping，因为机制与预想的已经不同了
+//        {
 
-        }
+//        }
     }
 }
 
