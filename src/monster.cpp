@@ -5,7 +5,7 @@
 
 monster::monster()
 {
-	m_pix_one.load("monster.png");
+	m_pix_one.load("src/monster.png");
     isGoingLeft = true;
     isGoingRight = false;
 }

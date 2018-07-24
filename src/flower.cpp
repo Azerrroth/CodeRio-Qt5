@@ -5,10 +5,10 @@
 
 flower::flower()
 {
-    m_pix_one.load("flower1.png");
+	m_pix_one.load("src/flower1.png");
     time = 0;
-    picList.append("flower1.png");
-    picList.append("flower2.png");
+	picList.append("src/flower1.png");
+	picList.append("src/flower2.png");
 
     timer=new QTimer;
     connect(timer,SIGNAL(timeout()),this,SLOT(flowerTimer()));

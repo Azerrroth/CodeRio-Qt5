@@ -18,7 +18,6 @@
 #include "cloud.h"
 #include "tube.h"
 #include "flower.h"
-#include "mushroom.h"
 #include "flag.h"
 #include <QKeyEvent>
 #include <QTime>
@@ -44,7 +43,6 @@ public:
 	//以下的几个函数是为了在MyScene中初始化用的，直接用get函数不能push进去，必须重新实现一个push
     inline void pushCoins(coins* coi) {coinlist.push_back(coi);}
     inline void pushQue(questionMark* que) {quelist.push_back(que);}
-    inline void pushMushroom(mushroom* mos) {mushroomlist.push_back(mos);}
     inline void pushCloud(cloud* clo) {cloudlist.push_back(clo);}
     inline void pushMonster(monster* mon) {monsterlist.push_back(mon);}
     inline void pushFlower(flower* flo) {flowerlist.push_back(flo);}
@@ -63,7 +61,6 @@ public:
     inline QList<cloud*> getCloud() {return cloudlist;}
     inline QList<monster*> getMonster() {return monsterlist;}
     inline QList<tube*> getTube() {return tubelist;}
-    inline QList<mushroom*> getMushroom() {return mushroomlist;}
     inline QList<flower*> getFlower() {return flowerlist;}
 	background* getBack() {return back;}
 	mario* getMario() {return player;}
@@ -83,7 +80,7 @@ private:
 	mario* player;
 	background* back;
 	flag* fla;
-	//有一系列的障碍方块，故要用vector
+	//有一系列的障碍方块，故要用List
 	QList<blocks*> blocklist;
 	QList<coins*> coinlist;
 	QList<baseblock*> baslist;
@@ -92,7 +89,6 @@ private:
 	QList<monster*> monsterlist;
 	QList<cloud*> cloudlist;
 	QList<tube*> tubelist;
-	QList<mushroom*> mushroomlist;
 	QList<flower*> flowerlist;
 };
 

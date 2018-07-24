@@ -5,7 +5,7 @@
 
 questionMark::questionMark()
 {
-	m_pix_one.load("queblock.png");
+	m_pix_one.load("src/queblock.png");
 	isHitted = false;
 }
 
@@ -17,7 +17,7 @@ QRectF questionMark::boundingRect() const {
 
 void questionMark::change()
 {
-	m_pix_one.load("queblock1.png");
+	m_pix_one.load("src/queblock1.png");
 	update();
 }
 

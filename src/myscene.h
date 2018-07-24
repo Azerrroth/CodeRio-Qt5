@@ -13,7 +13,6 @@
 #include "cloud.h"
 #include "flower.h"
 #include "tube.h"
-#include "mushroom.h"
 #include "coinnumber.h"
 #include <QPushButton>
 #include <string>
@@ -58,9 +57,13 @@ private:
     bool isMoving,haveDead;
     Sound* jumpSound,*BGM;
 	bool isEnd;
+	QTimer* SoundTimer;
+	Sound* temp[15];
+	int countPoint=0;
 
 private slots:
     void refresh();
+	void clean();
 
 };
 

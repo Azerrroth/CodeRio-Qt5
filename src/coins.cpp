@@ -16,7 +16,7 @@
 coins::coins(bool bo, QGraphicsObject *parent)
     :QGraphicsObject(parent)
 {
-    QFile file("coin.txt");
+	QFile file("src/coin.txt");
     if(file.open(QFile::ReadOnly))//打开存放图片文件名的txt文本文档，把文件名一行一行存到picList里
     {
         QTextStream stream(&file);

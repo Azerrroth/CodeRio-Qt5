@@ -36,20 +36,20 @@ void tube::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
 	switch (len) {
 	case Short:
 	{
-		if(!reverse) m_pix_one.load("shortTube.png");
-		else m_pix_one.load("_shortTube.png");
+		if(!reverse) m_pix_one.load("src/shortTube.png");
+		else m_pix_one.load("src/_shortTube.png");
 		break;
 	}
 	case Medium:
 	{
-		if(!reverse) m_pix_one.load("mediumTube.png");
-		else m_pix_one.load("_mediumTube.png");
+		if(!reverse) m_pix_one.load("src/mediumTube.png");
+		else m_pix_one.load("src/_mediumTube.png");
 		break;
 	}
 	case Long:
 	{
-		if(!reverse) m_pix_one.load("longTube.png");
-		else m_pix_one.load("_longTube.png");
+		if(!reverse) m_pix_one.load("src/longTube.png");
+		else m_pix_one.load("src/_longTube.png");
 		break;
 	}
 	default:

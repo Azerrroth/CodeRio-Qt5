@@ -4,7 +4,7 @@
 
 flag::flag()
 {
-	m_pix_one.load("flag.png");
+	m_pix_one.load("src/flag.png");
 }
 
 QRectF flag::boundingRect() const
