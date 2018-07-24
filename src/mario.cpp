@@ -153,7 +153,7 @@ void mario::mario_timer()
         if(this->y()>=700)
             dieSpeed=12;
         else if(this->y()>=500&&this->y()<700)
-            dieSpeed=5;
+            dieSpeed=10;
         else if(this->y()>=400&&this->y()<500)
             dieSpeed=8;
         else if(this->y()>=0&&this->y()<400)
