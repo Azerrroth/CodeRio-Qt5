@@ -1,0 +1,8 @@
+Rstand.png
+Rwalk1.png
+Rwalk2.png
+Rstand.png
+Lstand.png
+Lwalk1.png
+Lwalk2.png
+Lwalk1.png
