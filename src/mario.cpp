@@ -16,7 +16,7 @@ mario::mario(QGraphicsObject *parent)
     :QGraphicsObject (parent)
 {
     setFlag(QGraphicsItem::ItemIsFocusable);
-	m_pix_one.load("Rwalk1.png");//初始状态是向右站着
+	m_pix_one.load("src/Rwalk1.png");//初始状态是向右站着
     coins = 0;
     life = 5;
     jumpingTime = 0;
@@ -30,7 +30,7 @@ mario::mario(QGraphicsObject *parent)
 
     //下面是动画内容
 
-    QFile file("marioWalk.txt");//前两行是右，后两行是左
+	QFile file("src/marioWalk.txt");//前两行是右，后两行是左
     if(file.open(QFile::ReadOnly))//打开存放图片文件名的txt文本文档，把文件名一行一行存到picList里
     {
         QTextStream stream(&file);
@@ -40,11 +40,6 @@ mario::mario(QGraphicsObject *parent)
         }
         file.close();
     }
-    else
-    {
-        qDebug()<<"no file was opened!!!"<<endl;
-    }
-
     connect(this,SIGNAL(haveCoin()),this,SLOT(coinSound()));
     timer=new QTimer;
     connect(timer,SIGNAL(timeout()),this,SLOT(mario_timer()));
@@ -111,12 +106,12 @@ void mario::mario_timer()
         if(isJumping)//先判断跳起状态
         {
             if(isGoingLeft)//向左跳
-                m_pix_one=QPixmap("Ljump.png");
+				m_pix_one=QPixmap("src/Ljump.png");
             else
-                m_pix_one=QPixmap("Rjump.png");
+				m_pix_one=QPixmap("src/Rjump.png");
         }
         if(tempX==x()&&tempY==y())
-            m_pix_one=QPixmap("Rstand.png");
+			m_pix_one=QPixmap("src/Rstand.png");
 
         tempX=x();
         tempY=y();
@@ -141,7 +136,7 @@ void mario::mario_timer()
     }
     else
     {
-        m_pix_one=QPixmap("Die.png");
+		m_pix_one=QPixmap("src/Die.png");
         update();
     }
     if(isDie&&!haveDead)
@@ -182,7 +177,7 @@ void mario::die_timer()
 //下面是音效部分
 void mario::coinSound()
 {
-    coin=new Sound("getCoin.mp3");
+	coin=new Sound("src/getCoin.mp3");
     temp[countPoint]=coin;
     countPoint++;
 }

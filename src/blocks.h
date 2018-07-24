@@ -11,7 +11,7 @@
 class blocks : public QGraphicsObject
 {
 public:
-    blocks(const QString pix = "block.png");
+	blocks(const QString pix = "src/block.png");
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     void setColor(const QColor &color);

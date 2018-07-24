@@ -35,7 +35,6 @@ SOURCES += \
     baseblock.cpp \
     cloud.cpp \
     monster.cpp \
-    mushroom.cpp \
     questionmark.cpp \
     stone.cpp \
     tube.cpp \
@@ -55,7 +54,6 @@ HEADERS += \
     baseblock.h \
     cloud.h \
     monster.h \
-    mushroom.h \
     questionmark.h \
     stone.h \
     tube.h \

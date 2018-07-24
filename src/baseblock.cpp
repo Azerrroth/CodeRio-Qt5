@@ -2,7 +2,7 @@
 #include <QPainter>
 baseblock::baseblock()
 {
-	m_pix_one.load("baseblock.png");
+	m_pix_one.load("src/baseblock.png");
 }
 
 QRectF baseblock::boundingRect() const

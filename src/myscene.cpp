@@ -17,7 +17,7 @@ MyScene::MyScene()
 
     timer = new QTimer;
     connect(timer,SIGNAL(timeout()),this,SLOT(refresh()));
-    timer->start(3);
+	timer->start(50000);
 
 	isEnd = false;
     haveDead=false;//true是已经死过了，false是没死过
@@ -200,7 +200,7 @@ void MyScene::judgeQue()
 								getControl()->getMario()->y() >=
 								getControl()->getQue().at(i)->y() + 50)
 						{
-							fstream in("special.txt");
+							fstream in("src/special.txt");
 							string str;
 							while (getline(in, str))
 							{
@@ -276,7 +276,11 @@ void MyScene::initialize()
     connect(timer,SIGNAL(timeout()),this,SLOT(refresh()));
     timer->start(3);
 
-    BGM=new Sound("StartBGM.mp3");
+	SoundTimer=new QTimer;
+	connect( SoundTimer,SIGNAL(timeout()),this,SLOT(clean()));
+	SoundTimer->start(2000);
+
+	BGM=new Sound("src/StartBGM.mp3");
     BGM->player->setVolume(20);
     addItem(getControl()->getBack());
     getControl()->getBack()->setPos(0, 0);
@@ -290,10 +294,12 @@ void MyScene::initialize()
 	getControl()->getFlag()->setPos(21150, 150);
 
 	coinIco = new coins(false);
+	coinIco->setZValue(110);
 	addItem(coinIco);
 	coinIco->setPos(200, 60);
 
 	coinNum = new coinnumber(getControl()->getMario()->getCoin());
+	coinNum->setZValue(110);
 	addItem(coinNum);
 	coinNum->setPos(270, 55);
 
@@ -305,7 +311,7 @@ void MyScene::initialize()
         getControl()->pushCoins(coi);
     }
 
-    fstream in("info.txt");
+	fstream in("src/info.txt");
     string str;
     while (getline(in, str))
     {
@@ -332,14 +338,6 @@ void MyScene::initialize()
 			this->addItem(mon);
 			mon->setPos(x, y);
 			getControl()->pushMonster(mon);
-        }
-
-        else if(str.substr(0, 3) == "MUS")
-        {
-			mushroom* mus = new mushroom;
-			this->addItem(mus);
-			mus->setPos(x, y);
-			getControl()->pushMushroom(mus);
         }
 		else if(str.substr(0, 3) == "CLO")
         {
@@ -455,8 +453,9 @@ void MyScene::keyPressEvent(QKeyEvent *event)
 		{
 			if(control->isDowncollider())           //在下方有东西的时候才能跳
 			{
-				delete jumpSound;
-				jumpSound=new Sound("Jump.wav");
+				jumpSound=new Sound("src/Jump.wav");
+				temp[countPoint]=jumpSound;
+				countPoint++;
 				control->getMario()->setJumping(true);
 			}
 		}
@@ -484,8 +483,9 @@ void MyScene::keyPressEvent(QKeyEvent *event)
 		{
 			if(control->isDowncollider())           //在下方有东西的时候才能跳
 			{
-				delete jumpSound;
-				jumpSound=new Sound("Jump.wav");
+				jumpSound=new Sound("src/Jump.wav");
+				temp[countPoint]=jumpSound;
+				countPoint++;
 				control->getMario()->setJumping(true);
 			}
 		}
@@ -538,7 +538,7 @@ void MyScene::timerEvent(QTimerEvent *event)                //timerevent改动�
     if(getControl()->getMario()->getDie()&&!haveDead)
     {
         BGM->player->stop();
-        BGM->address="Die.mp3";
+		BGM->address="src/Die.mp3";
         BGM->player->setMedia(QUrl::fromLocalFile(BGM->address));
         BGM->player->play();
         BGM->player->setVolume(50);
@@ -714,5 +714,16 @@ void MyScene::endView()
 				item->setZValue(110);
 			}
 		}
+	}
+}
+
+
+void MyScene::clean()
+{
+	if(countPoint)
+	{
+		for(int i=countPoint;i<countPoint;i++)
+			delete temp[i];
+		countPoint=0;
 	}
 }

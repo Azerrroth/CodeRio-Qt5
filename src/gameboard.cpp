@@ -14,7 +14,7 @@ using std::string;
 GameBoard::GameBoard(QObject *parent) : QObject(parent)
 {
     player = new mario();
-    back = new background("background.png");
+	back = new background("src/background.png");
 	fla = new flag;
 }
 
@@ -37,8 +37,7 @@ void GameBoard::moveMario()
     {
         player->moveBy(0,2);
         if(isDowncollider())
-            player->setPixmap("Rstand.png");
-
+			player->setPixmap("src/Rstand.png");
     }
 
     if(player->getJumping() && !isUpcollider())
@@ -58,7 +57,7 @@ void GameBoard::moveMario()
             player->setJumping(false);
             player->setJumpingTime(0);
             //落地变stand姿态
-            player->setPixmap("Rstand.png");
+			player->setPixmap("src/Rstand.png");
         }
 
     }

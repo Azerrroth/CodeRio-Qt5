@@ -4,7 +4,7 @@
 
 stone::stone()
 {
-	m_pix_one.load("stone.png");
+	m_pix_one.load("src/stone.png");
 }
 
 QRectF stone::boundingRect() const {
