@@ -54,9 +54,8 @@ private:
     int timerId;
 
     int pos_x;                      //判断移动的参数
-    bool isMoving;
+    bool isMoving,haveDead;
     Sound* jumpSound,*BGM;
-
 };
 
 #endif // MYSCENE_H

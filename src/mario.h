@@ -48,7 +48,8 @@ private:
     QPixmap m_pix_one;
     qreal move_x;
     qreal move_y;
-
+    qreal dieSpeed;
+    qreal i=0;      //计时用
     int coins;      //金币
     int life;       //生命
 
@@ -56,6 +57,7 @@ private:
     bool isGoingLeft;           //判断是否往左
     bool isGoingRight;          //判断是否往右
 	bool isDie;
+    bool haveDead;
 
     int jumpingTime;
     int start_y;
@@ -68,16 +70,18 @@ private:
     //下面是音效的
     Sound *coin,*temp[15];
     int countPoint=0;
-    QTimer *timerSound;
+    QTimer *timerSound,*timerDie;
 
 
 private slots:
     void mario_timer();
+    void die_timer();
     void coinSound();
     void mario_sound();
 
 signals:
     void haveCoin();
+    //void Dead();
 
 };
 #endif // GRAPHICSITEM_H

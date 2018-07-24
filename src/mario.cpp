@@ -26,6 +26,7 @@ mario::mario(QGraphicsObject *parent)
     isGoingLeft = false;
 	isGoingRight = false;
 	isDie = false;
+    haveDead =false;
 
 
     //下面是动画内容
@@ -54,6 +55,9 @@ mario::mario(QGraphicsObject *parent)
     connect(timerSound,SIGNAL(timeout()),this,SLOT(mario_sound()));
     timerSound->start(5000);
 
+    timerDie=new QTimer;
+    connect(timerDie,SIGNAL(timeout()),this,SLOT(die_timer()));
+
 
 }
 
@@ -62,6 +66,7 @@ mario::~mario()
     delete timer;
     delete coin;
     delete timerSound;
+    delete timerDie;
 }
 
 QRectF mario::boundingRect() const
@@ -97,43 +102,83 @@ void mario::setColor(const QColor &color)
 
 void mario::mario_timer()
 {
-    if(Walk.count()==0)
-	{
-        return;}
-
-    static int Rgo=0,Lgo=2;
-    if(isJumping)//先判断跳起状态
+    if(!isDie)
     {
-        if(isGoingLeft)//向左跳
-            m_pix_one=QPixmap("Ljump.png");
-        else
-            m_pix_one=QPixmap("Rjump.png");
-    }
-    if(tempX==x()&&tempY==y())
-        m_pix_one=QPixmap("Rstand.png");
+        if(Walk.count()==0)
+        {
+            return;}
 
-    tempX=x();
-    tempY=y();
+        static int Rgo=0,Lgo=2;
+        if(isJumping)//先判断跳起状态
+        {
+            if(isGoingLeft)//向左跳
+                m_pix_one=QPixmap("Ljump.png");
+            else
+                m_pix_one=QPixmap("Rjump.png");
+        }
+        if(tempX==x()&&tempY==y())
+            m_pix_one=QPixmap("Rstand.png");
 
-    if(isGoingLeft&&!isGoingRight&&!isJumping)
-    {
-        m_pix_one=QPixmap(Walk[Lgo]);
-        Lgo++;
-    }
-    else if(isGoingRight&&!isJumping)
-    {
-        m_pix_one=QPixmap(Walk[Rgo]);
-        Rgo++;
-    }
+        tempX=x();
+        tempY=y();
+
+        if(isGoingLeft&&!isGoingRight&&!isJumping)
+        {
+            m_pix_one=QPixmap(Walk[Lgo]);
+            Lgo++;
+        }
+        else if(isGoingRight&&!isJumping)
+        {
+            m_pix_one=QPixmap(Walk[Rgo]);
+            Rgo++;
+        }
 
         update();
-	if(Rgo>=4||Lgo>=4)
-    {
-        Rgo=0;
-        Lgo=2;
+        if(Rgo>=4||Lgo>=4)
+        {
+            Rgo=0;
+            Lgo=2;
+        }
     }
-
-
+    else
+    {
+        m_pix_one=QPixmap("Die.png");
+        update();
+    }
+    if(isDie&&!haveDead)
+    {
+        haveDead=true;
+        timerDie->start(10);
+        timer->stop();
+        if(this->y()>=700)
+            dieSpeed=12;
+        else if(this->y()>=500&&this->y()<700)
+            dieSpeed=5;
+        else if(this->y()>=400&&this->y()<500)
+            dieSpeed=8;
+        else if(this->y()>=0&&this->y()<400)
+            dieSpeed=5;
+    }
+}
+void mario::die_timer()
+{
+    if(!isDie)
+        return;
+    qDebug()<<"this is die_timer";
+    if(this->y()<=850)
+    {
+        if(true)//往上抛   y=v0*t-1/2 gt^2    v=gt    a=g
+            //往下掉
+        {
+            this->moveBy(0,-(dieSpeed-0.098*i));
+            qDebug()<<this->y();
+        }
+    }
+    else
+    {
+        timerDie->stop();
+    }
+    i++;
 }
 
 

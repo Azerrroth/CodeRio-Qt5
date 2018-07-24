@@ -31,6 +31,7 @@ MyScene::MyScene()
     connect(timer,SIGNAL(timeout()),this,SLOT(refresh()));
     timer->start(3);
 
+    haveDead=false;//true是已经死过了，false是没死过
 }
 
 void MyScene::spcialDie()
@@ -541,6 +542,15 @@ void MyScene::timerEvent(QTimerEvent *event)                //timerevent改动�
     control->getBack()->update();
 
 	//若马里奥死亡则不再移动场景及马里奥
+    if(getControl()->getMario()->getDie()&&!haveDead)
+    {
+        BGM->player->stop();
+        BGM->address="Die.mp3";
+        BGM->player->setMedia(QUrl::fromLocalFile(BGM->address));
+        BGM->player->play();
+        BGM->player->setVolume(50);
+        haveDead=true;
+    }
 	if(!getControl()->getMario()->getDie())
 	{
 		control->moveMario();

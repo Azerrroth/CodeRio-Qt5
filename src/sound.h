@@ -15,7 +15,6 @@ public:
     void ppplay();
     QMediaPlayer *player;
 
-private:
     QString address;
 
 
