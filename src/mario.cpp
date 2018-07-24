@@ -108,7 +108,7 @@ void mario::mario_timer()
         {
             return;}
 
-        static int Rgo=0,Lgo=2;
+        static int Rgo=0,Lgo=4;
         if(isJumping)//先判断跳起状态
         {
             if(isGoingLeft)//向左跳
@@ -134,10 +134,10 @@ void mario::mario_timer()
         }
 
         update();
-        if(Rgo>=4||Lgo>=4)
+        if(Rgo>=4||Lgo>=8)
         {
             Rgo=0;
-            Lgo=2;
+            Lgo=4;
         }
     }
     else
