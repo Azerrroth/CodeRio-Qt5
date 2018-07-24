@@ -12,10 +12,10 @@ using std::string;
 
 MyScene::MyScene()
 {
-//    QPushButton* item=new QPushButton;
-//    item->setText("This is just a test Button");
-//    item->setGeometry(50,50,100,50);
-//    item->show();
+    //    PushButton* item=new PushButton(this);
+    //    item->setText("This is just a test Button");
+    //    item->setGeometry(50,50,100,50);
+    //    item->show();
 
     //vie = new view;
     //addItem(vie);
@@ -50,6 +50,7 @@ void MyScene::removeCoins()
 					{
 						getControl()->getCoins().at(i)->remove();
 						getControl()->getCoins().at(i)->setExist();
+                        //delete getControl()->getCoins().at(i);
 						getControl()->getMario()->addCoinNum();
 						break;
 					}
@@ -269,8 +270,9 @@ void MyScene::initialize()
     {
         coins* coi = new coins;
         this->addItem(coi);
+        getControl()->pushCoins(coi);
         coi->setPos(200, -200000);
-        getControl()->getCoins().push_back(coi);
+        getControl()->pushCoins(coi);
     }
 
     fstream in("info.txt");
@@ -285,7 +287,7 @@ void MyScene::initialize()
             blocks* blo = new blocks;
             this->addItem(blo);
             blo->setPos(x, y);
-            getControl()->getBlocks().push_back(blo);
+            getControl()->pushBlock(blo);
         }
         else if(str.substr(0,3) == "COI")
         {
@@ -321,7 +323,7 @@ void MyScene::initialize()
 			stone* sto = new stone;
 			this->addItem(sto);
 			sto->setPos(x, y);
-			getControl()->getStone().push_back(sto);
+            getControl()->pushStone(sto);
 		}
 		else if(str.substr(0, 3) == "QUE")
 		{
@@ -335,7 +337,7 @@ void MyScene::initialize()
 			baseblock* bas = new baseblock;
 			this->addItem(bas);
 			bas->setPos(x, y);
-			getControl()->getBase().push_back(bas);
+            getControl()->pushBase(bas);
 		}
 		else if(str[0] == 'T')
 		{
@@ -346,21 +348,21 @@ void MyScene::initialize()
 					tube* tub = new tube(Short, true);
 					this->addItem(tub);
 					tub->setPos(x, y);
-					getControl()->getTube().push_back(tub);
+                    getControl()->pushTube(tub);
 				}
 				else if(str[2] == 'M')
 				{
 					tube* tub = new tube(Medium, true);
 					this->addItem(tub);
 					tub->setPos(x, y);
-					getControl()->getTube().push_back(tub);
+                    getControl()->pushTube(tub);
 				}
 				else if(str[2] == 'L')
 				{
 					tube* tub = new tube(Long, true);
 					this->addItem(tub);
 					tub->setPos(x, y);
-					getControl()->getTube().push_back(tub);
+                    getControl()->pushTube(tub);
 				}
 			}
 			else if(str[1] == 'F')
@@ -370,21 +372,21 @@ void MyScene::initialize()
 					tube* tub = new tube(Short, false);
 					this->addItem(tub);
 					tub->setPos(x, y);
-					getControl()->getTube().push_back(tub);
+                    getControl()->pushTube(tub);
 				}
 				else if(str[2] == 'M')
 				{
 					tube* tub = new tube(Medium, false);
 					this->addItem(tub);
 					tub->setPos(x, y);
-					getControl()->getTube().push_back(tub);
+                    getControl()->pushTube(tub);
 				}
 				else if(str[2] == 'L')
 				{
 					tube* tub = new tube(Long, false);
 					this->addItem(tub);
 					tub->setPos(x, y);
-					getControl()->getTube().push_back(tub);
+                    getControl()->pushTube(tub);
 				}
 			}
 		}
@@ -630,6 +632,6 @@ void MyScene::moveFlower()
             control->getFlower().at(i)->setTime(control->getFlower().at(i)->getTime() + 1);
         }
 
-        qDebug() << control->getFlower().at(i)->y() << i;
+//        qDebug() << control->getFlower().at(i)->y() << i;
     }
 }

@@ -13,6 +13,7 @@ class mario: public QGraphicsObject
     Q_OBJECT
 public:
     mario(QGraphicsObject *parent=nullptr);
+    ~mario();
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     void setColor(const QColor &color);
@@ -67,7 +68,6 @@ private:
     //下面是音效的
     Sound *coin,*temp[15];
     int countPoint=0;
-    //static int tempCoins;
     QTimer *timerSound;
 
 

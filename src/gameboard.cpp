@@ -21,6 +21,13 @@ GameBoard::GameBoard(QObject *parent) : QObject(parent)
 //    setItems("info.txt");
 }
 
+GameBoard::~GameBoard()
+{
+    delete player;
+    delete back;
+    delete fla;
+}
+
 /*void GameBoard::setItems(string file)
 {
     fstream in(file);

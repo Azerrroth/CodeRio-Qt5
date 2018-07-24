@@ -14,6 +14,8 @@
 #include "flower.h"
 #include "tube.h"
 #include "mushroom.h"
+#include "pushbutton.h"
+#include <QPushButton>
 
 class MyScene : public QGraphicsScene
 {
@@ -42,6 +44,7 @@ private:
     QTimer *timer;
 private:
     GameBoard* control;
+//    PushButton* item;
 
 private slots:
     void refresh();

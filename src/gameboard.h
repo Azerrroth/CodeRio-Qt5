@@ -52,7 +52,7 @@ class GameBoard : public QObject
     Q_OBJECT
 public:
     explicit GameBoard(QObject *parent = nullptr);
-
+    ~GameBoard();
 
 
     void moveView();	//该函数移动除了马里奥之外的内容，包括背景及障碍物
@@ -60,24 +60,29 @@ public:
 	void moveMonster();	//移动怪物
 
 	//以下的几个函数是为了在MyScene中初始化用的，直接用get函数不能push进去，必须重新实现一个push
-	void pushCoins(coins* coi) {coinlist.push_back(coi);}
-	void pushQue(questionMark* que) {quelist.push_back(que);}
-	void pushMushroom(mushroom* mos) {mushroomlist.push_back(mos);}
-	void pushCloud(cloud* clo) {cloudlist.push_back(clo);}
-	void pushMonster(monster* mon) {monsterlist.push_back(mon);}
-	void pushFlower(flower* flo) {flowerlist.push_back(flo);}
+    inline void pushCoins(coins* coi) {coinlist.push_back(coi);}
+    inline void pushQue(questionMark* que) {quelist.push_back(que);}
+    inline void pushMushroom(mushroom* mos) {mushroomlist.push_back(mos);}
+    inline void pushCloud(cloud* clo) {cloudlist.push_back(clo);}
+    inline void pushMonster(monster* mon) {monsterlist.push_back(mon);}
+    inline void pushFlower(flower* flo) {flowerlist.push_back(flo);}
+    inline void pushStone(stone* sto){stonelist.append(sto);}
+    inline void pushBase(baseblock* bas){baslist.append(bas);}
+    inline void pushTube(tube* tub){tubelist.append(tub);}
+    inline void pushBlock(blocks* blo){blocklist.append(blo);}
 
-	//提供访问的接口
-	QList<blocks*> getBlocks() {return blocklist;}
-	QList<coins*> getCoins() {return coinlist;}
-	QList<baseblock*> getBase() {return baslist;}
-	QList<questionMark*> getQue() {return quelist;}
-	QList<stone*> getStone() {return stonelist;}
-	QList<cloud*> getCloud() {return cloudlist;}
-	QList<monster*> getMonster() {return monsterlist;}
-	QList<tube*> getTube() {return tubelist;}
-	QList<mushroom*> getMushroom() {return mushroomlist;}
-	QList<flower*> getFlower() {return flowerlist;}
+
+    //提供访问的接口
+    inline QList<blocks*> getBlocks() {return blocklist;}
+    inline QList<coins*> getCoins() {return coinlist;}
+    inline QList<baseblock*> getBase() {return baslist;}
+    inline QList<questionMark*> getQue() {return quelist;}
+    inline QList<stone*> getStone() {return stonelist;}
+    inline QList<cloud*> getCloud() {return cloudlist;}
+    inline QList<monster*> getMonster() {return monsterlist;}
+    inline QList<tube*> getTube() {return tubelist;}
+    inline QList<mushroom*> getMushroom() {return mushroomlist;}
+    inline QList<flower*> getFlower() {return flowerlist;}
 	background* getBack() {return back;}
 	mario* getMario() {return player;}
 	flag* getFlag() {return fla;}

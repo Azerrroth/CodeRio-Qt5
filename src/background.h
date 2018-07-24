@@ -16,6 +16,7 @@ class background : public QGraphicsObject
 public:
     background(const QString pix = "background.png");
     //在类外因为不能访问private，故用一个公有的move()函数来调用moveBy()，实现在类外部移动
+
     void move();
     //设置位移的值
     void setMove(qreal x, qreal y);

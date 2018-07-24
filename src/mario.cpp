@@ -57,6 +57,13 @@ mario::mario(QGraphicsObject *parent)
 
 }
 
+mario::~mario()
+{
+    delete timer;
+    delete coin;
+    delete timerSound;
+}
+
 QRectF mario::boundingRect() const
 {
     double penWidth = 1;
