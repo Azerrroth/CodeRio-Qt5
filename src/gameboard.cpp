@@ -13,7 +13,6 @@ using std::string;
 
 GameBoard::GameBoard(QObject *parent) : QObject(parent)
 {
-    qDebug() << "GameBoard was created" << endl;
     //timerId = startTimer(15);                     //开启一个每隔15ms触发一次的计时器，timerId是该计时器的名称，暂时取消！
     player = new mario();
     back = new background("background.png");

@@ -10,8 +10,6 @@
 background::background(const QString pix)
 {
     m_pix_one.load(pix);
-    qDebug() << "background was created" << endl;
-
 }
 
 

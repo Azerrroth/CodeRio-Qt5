@@ -28,7 +28,6 @@ coins::coins(bool bo, QGraphicsObject *parent)
     }
     else
     {
-        qDebug()<<"no file was opened!!!"<<endl;
     }
     timer=new QTimer;
 	coinExist = true;

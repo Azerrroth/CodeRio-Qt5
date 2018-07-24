@@ -15,7 +15,6 @@
 mario::mario(QGraphicsObject *parent)
     :QGraphicsObject (parent)
 {
-    qDebug() << "mario was created" << endl;
     setFlag(QGraphicsItem::ItemIsFocusable);
 	m_pix_one.load("Rwalk1.png");//初始状态是向右站着
     coins = 0;
@@ -164,14 +163,12 @@ void mario::die_timer()
 {
     if(!isDie)
         return;
-    qDebug()<<"this is die_timer";
     if(this->y()<=850)
     {
         if(true)//往上抛   y=v0*t-1/2 gt^2    v=gt    a=g
             //往下掉
         {
             this->moveBy(0,-(dieSpeed-0.098*i));
-            qDebug()<<this->y();
         }
     }
     else

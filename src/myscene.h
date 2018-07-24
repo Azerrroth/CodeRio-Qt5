@@ -41,6 +41,8 @@ public:
 	void removeCoins();				//判断金币是否被碰撞的函数，若被玛丽奥碰撞则移除金币
 	void judgeQue();				//判断问号方块是否被玛丽奥碰撞
 	void spcialDie();
+
+	void endView();
 	QString percentage();
 
 private:
@@ -56,6 +58,7 @@ private:
 
     bool isMoving,haveDead;
     Sound* jumpSound,*BGM;
+	bool isEnd;
 
 private slots:
     void refresh();
