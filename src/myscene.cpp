@@ -272,6 +272,8 @@ void MyScene::refresh()
 	{
 		percentage();
 	}
+	coinNum->setNum(getControl()->getMario()->getCoin());
+	coinNum->showNumber();
 }
 
 void MyScene::initialize()
@@ -297,6 +299,14 @@ void MyScene::initialize()
 
 	addItem(getControl()->getFlag());
 	getControl()->getFlag()->setPos(21150, 150);
+
+	coinIco = new coins(false);
+	addItem(coinIco);
+	coinIco->setPos(200, 60);
+
+	coinNum = new coinnumber(getControl()->getMario()->getCoin());
+	addItem(coinNum);
+	coinNum->setPos(270, 55);
 
     {
         coins* coi = new coins;
@@ -578,6 +588,8 @@ void MyScene::moveView()                                    //场景移动相关
 
         {
             pos_x += 1;
+			coinIco->setPos(coinIco->x() + 1, coinIco->y());
+			coinNum->setPos(coinNum->x() + 1, coinNum->y());
             setSceneRect(pos_x,0,1450,800);
             int temp = pos_x;
             control->getBack()->setX(pos_x);//到图的右边缘就不再动了

@@ -13,7 +13,7 @@
 #include <QtGui>
 
 
-coins::coins(QGraphicsObject *parent)
+coins::coins(bool bo, QGraphicsObject *parent)
     :QGraphicsObject(parent)
 {
     QFile file("coin.txt");
@@ -32,6 +32,7 @@ coins::coins(QGraphicsObject *parent)
     }
     timer=new QTimer;
 	coinExist = true;
+	canGet = bo;
     connect(timer,SIGNAL(timeout()),this,SLOT(on_timer()));
     timer->start(100);
 
@@ -77,6 +78,7 @@ void coins::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
 QRectF coins::boundingRect() const
 {
     double penwidth = 1;
+	if(!canGet) return QRect(0, 0, 0, 0);
 	if(coinExist) return QRect(0 - penwidth / 2, 0 - penwidth / 2,
 							   48 + penwidth, 48 + penwidth);
 	else return QRect(0, 0, 0, 0);

@@ -7,7 +7,7 @@ class coins : public QGraphicsObject
     Q_OBJECT
 
 public:
-    coins(QGraphicsObject *parent=nullptr);
+	coins(bool bo = true, QGraphicsObject *parent=nullptr);
     ~coins();
 
     QRectF boundingRect() const;
@@ -25,6 +25,7 @@ private:
     QStringList picList;//动画每张图片的列表
     QTimer *timer;//计时器
 	bool coinExist;
+	bool canGet;
     int cnt=0;
 
 private slots:

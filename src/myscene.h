@@ -14,6 +14,7 @@
 #include "flower.h"
 #include "tube.h"
 #include "mushroom.h"
+#include "coinnumber.h"
 #include <QPushButton>
 #include <string>
 #include <algorithm>
@@ -46,7 +47,9 @@ private:
 	void initialize();
     //view* vie;
     QTimer *timer;
-    GameBoard* control;
+	GameBoard* control;
+	coins* coinIco;
+	coinnumber* coinNum;
 	void timerEvent(QTimerEvent* event);            //timerevent从gameboard改动到了myscene
 	int timerId;
 	int pos_x;                      //判断移动的参数

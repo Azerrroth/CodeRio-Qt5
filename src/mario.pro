@@ -42,7 +42,8 @@ SOURCES += \
     tube.cpp \
     flower.cpp \
     flag.cpp \
-    sound.cpp
+    sound.cpp \
+    coinnumber.cpp
 
 HEADERS += \
     blocks.h \
@@ -62,7 +63,8 @@ HEADERS += \
     tube.h \
     flower.h \
     flag.h \
-    sound.h
+    sound.h \
+    coinnumber.h
 
 FORMS += \
         mainwindow.ui
