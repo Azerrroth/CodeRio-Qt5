@@ -47,7 +47,6 @@ public:
 
 private:
 	void initialize();
-    //view* vie;
     QTimer *timer;
 	GameBoard* control;
 	coins* coinIco;

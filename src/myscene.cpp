@@ -1,5 +1,4 @@
 #include "myscene.h"
-#include "view.h"
 #include "flag.h"
 #include "sound.h"
 #include <fstream>
@@ -12,14 +11,7 @@ using std::string;
 
 MyScene::MyScene()
 {
-    //    PushButton* item=new PushButton(this);
-    //    item->setText("This is just a test Button");
-    //    item->setGeometry(50,50,100,50);
-    //    item->show();
 
-    //vie = new view;
-    //addItem(vie);
-    //vie->setPos(0, 0);
     initialize();
 	setSceneRect(0, 0, 1450, 800);
 
@@ -65,7 +57,6 @@ void MyScene::removeCoins()
 					{
 						getControl()->getCoins().at(i)->remove();
 						getControl()->getCoins().at(i)->setExist();
-                        //delete getControl()->getCoins().at(i);
 						getControl()->getMario()->addCoinNum();
 						break;
 					}
@@ -96,12 +87,11 @@ void MyScene::judgeQue()
 						getControl()->getQue().at(i)->change();
 						if(!getControl()->getQue().at(i)->getHit())
 						{
-							getControl()->getMario()->addCoinNum();//addCoinNubmer
+							getControl()->getMario()->addCoinNum();
 							getControl()->getQue().at(i)->setHit(true);
-							//下边写相应操作
 						}
 
-						if(getControl()->getQue().at(i)->x() == 450 &&			//杨添凯的骚操作
+						if(getControl()->getQue().at(i)->x() == 450 &&
 						   getControl()->getMario()->y() ==
 						   getControl()->getQue().at(i)->y() + 50)
 						{
@@ -438,10 +428,6 @@ void MyScene::initialize()
             flo->setZValue(-49);
 			getControl()->pushFlower(flo);
 		}
-		else if(str.substr(0, 3) == "FLA")
-		{
-
-		}
     }
 }
 void MyScene::keyPressEvent(QKeyEvent *event)
@@ -495,13 +481,11 @@ void MyScene::keyPressEvent(QKeyEvent *event)
 			control->getMario()->setGoingLeft(true);
 		}
 		else if(event->key() == Qt::Key_Up)      //这个不能改变isJumping，否则会出现马里奥斜跳和场景移动同时出现的状况
-			//7.21 18：13分更新：或许可以使用isJumping，因为机制与预想的已经不同了
 		{
 			if(control->isDowncollider())           //在下方有东西的时候才能跳
 			{
 				delete jumpSound;
 				jumpSound=new Sound("Jump.wav");
-				//connect(jumpSound,&Sound::finished, jumpSound, &QObject::deleteLater);
 				control->getMario()->setJumping(true);
 			}
 		}
@@ -512,18 +496,13 @@ void MyScene::keyReleaseEvent(QKeyEvent *event)
 {
     if(control->getMario()->x() > pos_x && control->getMario()->x() < pos_x + 500)
     {
-//        if(event->key() == Qt::Key_Space)           //留个空槽，这个暂时没用
-//        {
-//        }
 		if(event->key() == Qt::Key_Left)          //松开a键传停止左走的信号
         {
             control->getMario()->setGoingLeft(false);
-            //control->getMario()->setPixmap("Lstand.png");//松开A面朝左站立
         }
 		else if(event->key() == Qt::Key_Right)          //松开d键传停止右走的信号
         {
             control->getMario()->setGoingRight(false);
-            //control->getMario()->setPixmap("Rstand.png");//松开D面朝右站立
         }
     }
     else if(control->getMario()->x() <= pos_x)
@@ -579,7 +558,6 @@ void MyScene::moveView()                                    //场景移动相关
 {
     if(isMoving)
     {
-        //qDebug() << "moveView";                             //调试信息
         if(pos_x<20300)
 
         {
@@ -594,7 +572,7 @@ void MyScene::moveView()                                    //场景移动相关
 
         control->getBack()->update();
         //调用update()的时候会自动调用paint函数，所以给paint里drawpixmap的横坐标改成参数x
-        //修改x的值，让背景图片paint起点在负方向，就实现北京移动了
+		//修改x的值，让背景图片paint起点在负方向，就实现北京背景移动了
     }
 }
 
@@ -603,7 +581,6 @@ void MyScene::moveMonster()
     int num = control->getMonster().size();
     for(int i = 0;i < num;i++)
     {
-        //qDebug() << "first working" << pos_x << control->getMonster().at(i)->x();
 
         if(control->getMonster().at(i)->x() < pos_x)
         {
@@ -614,7 +591,6 @@ void MyScene::moveMonster()
             continue;
         }
 
-        //qDebug() << "work";
 
         if(control->monisLeft(control->getMonster().at(i)))
         {
@@ -632,12 +608,10 @@ void MyScene::moveMonster()
 
         if(left == true && right == false)
         {
-            //qDebug() << left << right << control->getMonster().at(i)->x();
             control->getMonster().at(i)->moveBy(-1,0);
         }
         else if(left == false && right == true)
         {
-            //qDebug() << left << right << control->getMonster().at(i)->x();
             control->getMonster().at(i)->moveBy(1,0);
         }
 
@@ -686,7 +660,6 @@ void MyScene::moveFlower()
             control->getFlower().at(i)->setTime(control->getFlower().at(i)->getTime() + 1);
         }
 
-//        qDebug() << control->getFlower().at(i)->y() << i;
     }
 }
 
@@ -735,7 +708,7 @@ void MyScene::endView()
 				QGraphicsTextItem* item = new QGraphicsTextItem;
 				item->setFont(QFont("Consolas",40,QFont::Bold));
 				item->setDefaultTextColor(QColor(255, 255, 255));
-				item->setPlainText(tr("胜利，你完成了100%"));
+				item->setPlainText(tr("       YOU  WIN!\nYou have finished 100%"));
 				addItem(item);
 				item->setPos(pos_x + 400, 350);
 				item->setZValue(110);

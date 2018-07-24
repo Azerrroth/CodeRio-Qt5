@@ -165,7 +165,7 @@ void mario::die_timer()
         return;
     if(this->y()<=850)
     {
-        if(true)//往上抛   y=v0*t-1/2 gt^2    v=gt    a=g
+		if(true)
             //往下掉
         {
             this->moveBy(0,-(dieSpeed-0.098*i));

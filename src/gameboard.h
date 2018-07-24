@@ -26,23 +26,6 @@
 #include <QObject>
 #include <QString>
 #include <QList>
-#include <string>
-#include <vector>
-using std::vector;
-using std::string;
-
-//枚举类型，标志着碰撞体的类型
-enum colliderType
-{
-	Block,
-	Boin,
-	Mushroom,
-	Flag,
-	Monster,
-	Turtles
-};
-
-
 class mario;
 class blocks;
 class background;
@@ -91,16 +74,12 @@ public:
     bool isUpcollider();				//判断马里奥上边的碰撞物是否影响了马里奥前进
     bool isDowncollider();				//判断马里奥下边的碰撞物是否影响了马里奥前进
 	
-	//以下是怪物碰撞的判断，刚开始没想好，早知道里边应该加参数的。。。
+	//以下是怪物碰撞的判断
 	bool monisLeft(monster* mon);
 	bool monisRight(monster* mon);
 	bool monisDown(monster* mon);
 
-    colliderType colType();				//返回与马里奥碰撞体的类名的函数
-
 private:
-
-
 	mario* player;
 	background* back;
 	flag* fla;
@@ -115,19 +94,6 @@ private:
 	QList<tube*> tubelist;
 	QList<mushroom*> mushroomlist;
 	QList<flower*> flowerlist;
-    //计时器，在构造函数中创建QTimer时把相应的值赋给它
-
-    //int timerId;                          //暂时取消
-
-    //把那些移动的操作都放在timeEvent实现
-    //并且在该函数内部同时实现如果没有碰撞体就下落的功能
-
-    //void timerEvent(QTimerEvent* event);                      //暂时取消
-
-    //该函数应该在构造函数中调用，通过读取一个txt文件从而把所有的blocks和其他的内容初始化
-    //并且同时把这些内容的位置确定
-    //完成setPos操作
-    void setItems(string file);
 };
 
 #endif // GAMEBOARD_H

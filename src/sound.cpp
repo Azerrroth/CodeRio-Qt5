@@ -19,5 +19,4 @@ void Sound::ppplay()
     player->setVolume(30);//设置音量
     player->play();
     return;
-    //qDebug()<<isFinished()<<endl;
 }

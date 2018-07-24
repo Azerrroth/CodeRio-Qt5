@@ -29,7 +29,6 @@ SOURCES += \
     gameboard.cpp \
     mario.cpp \
     background.cpp \
-    view.cpp \
     coins.cpp \
     myscene.cpp \
     globalapplication.cpp \
@@ -50,7 +49,6 @@ HEADERS += \
     gameboard.h \
     mario.h \
     background.h \
-    view.h \
     coins.h \
     myscene.h \
     globalapplication.h \

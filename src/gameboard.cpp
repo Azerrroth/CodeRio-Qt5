@@ -13,11 +13,9 @@ using std::string;
 
 GameBoard::GameBoard(QObject *parent) : QObject(parent)
 {
-    //timerId = startTimer(15);                     //开启一个每隔15ms触发一次的计时器，timerId是该计时器的名称，暂时取消！
     player = new mario();
     back = new background("background.png");
 	fla = new flag;
-//    setItems("info.txt");
 }
 
 
@@ -173,8 +171,7 @@ bool GameBoard::isUpcollider()
 
 bool GameBoard::isDowncollider()
 {
-    QList<QGraphicsItem*> list = player->collidingItems();			//是否这一行有问题？collidesItem()还是collidingItems()？
-    //回复楼上：的确有问题，少了个s
+	QList<QGraphicsItem*> list = player->collidingItems();
     if(list.isEmpty()) return false;
     else
     {
@@ -255,8 +252,7 @@ bool GameBoard::monisRight(monster *mon)
 
 bool GameBoard::monisDown(monster *mon)
 {
-	QList<QGraphicsItem*> list = mon->collidingItems();			//是否这一行有问题？collidesItem()还是collidingItems()？
-	//回复楼上：的确有问题，少了个s
+	QList<QGraphicsItem*> list = mon->collidingItems();
 	if(list.isEmpty()) return false;
 	else
 	{
