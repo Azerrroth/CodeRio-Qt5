@@ -52,7 +52,6 @@ class GameBoard : public QObject
     Q_OBJECT
 public:
     explicit GameBoard(QObject *parent = nullptr);
-    ~GameBoard();
 
 
     void moveView();	//该函数移动除了马里奥之外的内容，包括背景及障碍物

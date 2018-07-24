@@ -14,7 +14,6 @@
 #include "flower.h"
 #include "tube.h"
 #include "mushroom.h"
-#include "pushbutton.h"
 #include <QPushButton>
 
 class MyScene : public QGraphicsScene
@@ -37,9 +36,10 @@ public:
 
 	void removeCoins();				//判断金币是否被碰撞的函数，若被玛丽奥碰撞则移除金币
 	void judgeQue();				//判断问号方块是否被玛丽奥碰撞
+	void spcialDie();
 
 private:
-    void initialize();
+	void initialize();
     //view* vie;
     QTimer *timer;
 private:

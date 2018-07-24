@@ -33,6 +33,23 @@ MyScene::MyScene()
 
 }
 
+void MyScene::spcialDie()
+{
+	if(getControl()->getMario()->y() >= 850)
+		getControl()->getMario()->setDie(true);
+	else if(getControl()->getMario()->y() <= 45);
+	QList<QGraphicsItem*> list = getControl()->getMario()->collidingItems();
+	for(int i = 0; i < list.size(); i++)
+	{
+		if(QString(typeid(*list.at(i)).name()) == "6flower" ||
+		   QString(typeid(*list.at(i)).name()) == "7monster")
+		{
+			getControl()->getMario()->setDie(true);
+			break;
+		}
+	}
+}
+
 void MyScene::removeCoins()
 {
 	for(int i = 0; i < getControl()->getCoins().size(); i++)
@@ -250,6 +267,11 @@ void MyScene::refresh()
     advance();
 	removeCoins();
 	judgeQue();
+	//若已经死亡则不再判断
+	if(!getControl()->getMario()->getDie())
+	{
+		spcialDie();
+	}
 }
 
 void MyScene::initialize()
@@ -406,64 +428,64 @@ void MyScene::initialize()
 }
 void MyScene::keyPressEvent(QKeyEvent *event)
 {
-    //qDebug() << "key" << endl;
-    QList<QGraphicsItem*>list = control->getMario()->collidingItems();
+	//qDebug() << "key" << endl;
+	QList<QGraphicsItem*>list = control->getMario()->collidingItems();
 
-    if(control->getMario()->x() > pos_x && control->getMario()->x() < pos_x + 500)
-    {
-        if(event->key() == Qt::Key_D)
-        {
-            control->getMario()->setGoingRight(true);           //只需要在按下时候改变右走状态的布尔值，而判断碰撞物在moveMario里面
+	if(control->getMario()->x() > pos_x && control->getMario()->x() < pos_x + 500)
+	{
+		if(event->key() == Qt::Key_D)
+		{
+			control->getMario()->setGoingRight(true);           //只需要在按下时候改变右走状态的布尔值，而判断碰撞物在moveMario里面
 
-        }
-        else if(event->key() == Qt::Key_A)
-        {
-            if(control->getMario()->x() >= 0)                   //马里奥必须不能出场景
-            {
-                control->getMario()->setGoingLeft(true);        //只需要在按下时候改变左走状态的布尔值，而判断碰撞物在moveMario里面
-            }
-        }
-        else if(event->key() == Qt::Key_Space)      //改变布尔值，跳起来判断为isJumping = true
-        {
-            if(control->isDowncollider())           //在下方有东西的时候才能跳
-            {
-                delete jumpSound;
-                jumpSound=new Sound("Jump.wav");
-                control->getMario()->setJumping(true);
-            }
-        }
-    }
-    else if(control->getMario()->x() <= pos_x)
-    {
-        if(event->key() == Qt::Key_D)
-        {
-            control->getMario()->setGoingRight(true);
-        }
-    }
-    else if(control->getMario()->x() >= pos_x + 500)                                           //场景移动还未写
-    {
-        if(event->key() == Qt::Key_D)
-        {
-            control->getMario()->setGoingRight(true);
-            isMoving = true;
-        }
-        else if(event->key() == Qt::Key_A)
-        {
-            isMoving = false;
-            control->getMario()->setGoingLeft(true);
-        }
-        else if(event->key() == Qt::Key_Space)      //这个不能改变isJumping，否则会出现马里奥斜跳和场景移动同时出现的状况
-                                                    //7.21 18：13分更新：或许可以使用isJumping，因为机制与预想的已经不同了
-        {
-            if(control->isDowncollider())           //在下方有东西的时候才能跳
-            {
-                delete jumpSound;
-                jumpSound=new Sound("Jump.wav");
-                //connect(jumpSound,&Sound::finished, jumpSound, &QObject::deleteLater);
-                control->getMario()->setJumping(true);
-            }
-        }
-    }
+		}
+		else if(event->key() == Qt::Key_A)
+		{
+			if(control->getMario()->x() >= 0)                   //马里奥必须不能出场景
+			{
+				control->getMario()->setGoingLeft(true);        //只需要在按下时候改变左走状态的布尔值，而判断碰撞物在moveMario里面
+			}
+		}
+		else if(event->key() == Qt::Key_Space)      //改变布尔值，跳起来判断为isJumping = true
+		{
+			if(control->isDowncollider())           //在下方有东西的时候才能跳
+			{
+				delete jumpSound;
+				jumpSound=new Sound("Jump.wav");
+				control->getMario()->setJumping(true);
+			}
+		}
+	}
+	else if(control->getMario()->x() <= pos_x)
+	{
+		if(event->key() == Qt::Key_D)
+		{
+			control->getMario()->setGoingRight(true);
+		}
+	}
+	else if(control->getMario()->x() >= pos_x + 500)                                           //场景移动还未写
+	{
+		if(event->key() == Qt::Key_D)
+		{
+			control->getMario()->setGoingRight(true);
+			isMoving = true;
+		}
+		else if(event->key() == Qt::Key_A)
+		{
+			isMoving = false;
+			control->getMario()->setGoingLeft(true);
+		}
+		else if(event->key() == Qt::Key_Space)      //这个不能改变isJumping，否则会出现马里奥斜跳和场景移动同时出现的状况
+			//7.21 18：13分更新：或许可以使用isJumping，因为机制与预想的已经不同了
+		{
+			if(control->isDowncollider())           //在下方有东西的时候才能跳
+			{
+				delete jumpSound;
+				jumpSound=new Sound("Jump.wav");
+				//connect(jumpSound,&Sound::finished, jumpSound, &QObject::deleteLater);
+				control->getMario()->setJumping(true);
+			}
+		}
+	}
 }
 
 void MyScene::keyReleaseEvent(QKeyEvent *event)
@@ -517,9 +539,15 @@ void MyScene::timerEvent(QTimerEvent *event)                //timerevent改动�
     if(control->getMario()->x() <= pos_x) { control->getMario()->setGoingLeft(false); }
     else if(control->getMario()->x() < pos_x + 500) { isMoving = false; }
     control->getBack()->update();
-    control->moveMario();
+
+	//若马里奥死亡则不再移动场景及马里奥
+	if(!getControl()->getMario()->getDie())
+	{
+		control->moveMario();
+		moveView();
+	}
+
     moveMonster();
-    moveView();
     moveFlower();
 }
 

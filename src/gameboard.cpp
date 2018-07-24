@@ -21,72 +21,6 @@ GameBoard::GameBoard(QObject *parent) : QObject(parent)
 //    setItems("info.txt");
 }
 
-GameBoard::~GameBoard()
-{
-    delete player;
-    delete back;
-    delete fla;
-}
-
-/*void GameBoard::setItems(string file)
-{
-    fstream in(file);
-    string str;
-    while(getline(in, str))
-    {
-        int x = atoi(const_cast<char*>(str.substr(3, 7).c_str()));
-        int y = atoi(const_cast<char*>(str.substr(10, 7).c_str()));
-
-        if(str.substr(0, 3) == "BLO")
-        {
-            blocks* block = new blocks("block.png");
-            block->setPos(x, y);
-            blocklist.push_back(block);
-        }
-
-        else if(str.substr(0, 3) == "COI")
-        {
-            //			coins* coin = new coins(":picture.coin.png");
-            //			coin->setPos(x, y);
-            //			coinlist.push_back(coin);
-        }
-        else if(str.substr(0, 3) == "MON")
-        {
-
-        }
-        else if(str.substr(0, 3) == "FLA")
-        {
-
-        }
-        else if(str.substr(0, 3) == "MUS")
-        {
-
-        }
-        else if(str.substr(0, 3) == "TUR")
-        {
-
-        }
-    }
-
-}
-
-/*void GameBoard::timerEvent(QTimerEvent *event)
-{
-    if(player->x() <= 0) { player->setGoingLeft(false); }
-    //	moveView();
-    back->update();
-    moveMario();
-}*/
-
-/*void GameBoard::moveView()
-{
-    back->move();
-    for(int i = 0; i < blocklist.size(); i++)
-    {
-        blocklist[i]->move();
-    }
-}*/
-//应该暂时用不到这个move函数
 
 void GameBoard::moveMario()
 {
@@ -152,9 +86,18 @@ bool GameBoard::isLeftcollider()
 			   QString(typeid(*list.at(i)).name()) != "12questionMark" &&
 			   QString(typeid(*list.at(i)).name()) != "5stone" &&
 			   QString(typeid(*list.at(i)).name()) != "5cloud" &&
-			   QString(typeid(*list.at(i)).name()) != "4tube") continue;
+			   QString(typeid(*list.at(i)).name()) != "4tube")
+			{
+				continue;
+			}
+			else if(QString(typeid(*(list.at(i))).name()) == "6flower" ||
+					QString(typeid(*(list.at(i))).name()) == "7monster")
+			{
+				player->setDie(true);
+				continue;
+			}
             if(list[i]->x() <= player->x() &&
-                    list[i]->y() <= player->y())
+			   list[i]->y() <= player->y())
             {
                 return true;
             }
@@ -177,7 +120,16 @@ bool GameBoard::isRightcollider()
 			   QString(typeid(*list.at(i)).name()) != "12questionMark" &&
 			   QString(typeid(*list.at(i)).name()) != "5stone" &&
 			   QString(typeid(*list.at(i)).name()) != "5cloud" &&
-			   QString(typeid(*list.at(i)).name()) != "4tube") continue;
+			   QString(typeid(*list.at(i)).name()) != "4tube")
+			{
+				continue;
+			}
+			else if(QString(typeid(*(list.at(i))).name()) == "6flower" ||
+					QString(typeid(*(list.at(i))).name()) == "7monster")
+			{
+				player->setDie(true);
+				continue;
+			}
             if(list[i]->x() >= player->x() &&
                     list[i]->y() <= player->y())
             {
@@ -202,7 +154,16 @@ bool GameBoard::isUpcollider()
 			   QString(typeid(*list.at(i)).name()) != "12questionMark" &&
 			   QString(typeid(*list.at(i)).name()) != "5stone" &&
 			   QString(typeid(*list.at(i)).name()) != "5cloud" &&
-			   QString(typeid(*list.at(i)).name()) != "4tube") continue;
+			   QString(typeid(*list.at(i)).name()) != "4tube")
+			{
+				continue;
+			}
+			else if(QString(typeid(*(list.at(i))).name()) == "6flower" ||
+					QString(typeid(*(list.at(i))).name()) == "7monster")
+			{
+				player->setDie(true);
+				continue;
+			}
                if(list[i]->y() >= (player->y() - 50) &&
                   list[i]->y() <= (player->y() - 45) &&
 				  list[i]->x() ) return true;
@@ -225,7 +186,16 @@ bool GameBoard::isDowncollider()
 			   QString(typeid(*list.at(i)).name()) != "12questionMark" &&
 			   QString(typeid(*list.at(i)).name()) != "5stone" &&
 			   QString(typeid(*list.at(i)).name()) != "5cloud" &&
-			   QString(typeid(*list.at(i)).name()) != "4tube") continue;
+			   QString(typeid(*list.at(i)).name()) != "4tube")
+			{
+				continue;
+			}
+			else if(QString(typeid(*(list.at(i))).name()) == "6flower" ||
+					QString(typeid(*(list.at(i))).name()) == "7monster")
+			{
+				player->setDie(true);
+				continue;
+			}
 			if(list[i]->y() <= (player->y() + 50) &&
 			   list[i]->y() >= (player->y() + 48))
 			{
