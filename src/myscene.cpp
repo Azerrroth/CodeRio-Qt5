@@ -6,7 +6,6 @@
 #include <string>
 #include <algorithm>
 #include <QDebug>
-
 using std::fstream;
 using std::string;
 
@@ -272,6 +271,10 @@ void MyScene::refresh()
 	if(!getControl()->getMario()->getDie())
 	{
 		spcialDie();
+	}
+	else
+	{
+		percentage();
 	}
 }
 
@@ -672,4 +675,28 @@ void MyScene::moveFlower()
 
 //        qDebug() << control->getFlower().at(i)->y() << i;
     }
+}
+
+QString MyScene::percentage()
+{
+	double temp = (getControl()->getMario()->x() + pos_x) / 21750.0;
+	QString ret;
+	double t = 0.1;
+	int k = 0;
+	while (temp > 0)
+	{
+		k++;
+		char te = static_cast<int>(temp / t) + '0';
+		temp = temp / t - te + '0';
+		ret.push_back(te);
+		qDebug() << te;
+		if(k == 2) ret.push_back('.');
+		if(k == 4)
+		{
+			ret.push_back('%');
+			break;
+		}
+	}
+	qDebug() << ret;
+	return ret;
 }

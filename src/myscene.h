@@ -15,6 +15,9 @@
 #include "tube.h"
 #include "mushroom.h"
 #include <QPushButton>
+#include <string>
+#include <algorithm>
+using std::string;
 
 class MyScene : public QGraphicsScene
 {
@@ -37,25 +40,23 @@ public:
 	void removeCoins();				//判断金币是否被碰撞的函数，若被玛丽奥碰撞则移除金币
 	void judgeQue();				//判断问号方块是否被玛丽奥碰撞
 	void spcialDie();
+	QString percentage();
 
 private:
 	void initialize();
     //view* vie;
     QTimer *timer;
-private:
     GameBoard* control;
-//    PushButton* item;
+	void timerEvent(QTimerEvent* event);            //timerevent从gameboard改动到了myscene
+	int timerId;
+	int pos_x;                      //判断移动的参数
+
+    bool isMoving,haveDead;
+    Sound* jumpSound,*BGM;
 
 private slots:
     void refresh();
 
-private:
-    void timerEvent(QTimerEvent* event);            //timerevent从gameboard改动到了myscene
-    int timerId;
-
-    int pos_x;                      //判断移动的参数
-    bool isMoving,haveDead;
-    Sound* jumpSound,*BGM;
 };
 
 #endif // MYSCENE_H
